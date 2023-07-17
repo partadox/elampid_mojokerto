@@ -1,9 +1,8 @@
 // Donut pie chart
-
 var donutpieChartWidth = $("#lahir-charts").width();
 var container = document.getElementById('lahir-charts');
 var data = {
-    categories: ['Browser'],
+    categories: ['KECAMATAN'],
     series: [
         {
             name: 'Chrome',
