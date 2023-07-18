@@ -169,8 +169,8 @@
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="<?= base_url('mati') ?>" key="t-mati">Data</a></li>
                                 <?php if (session('role') == '707SP') { ?> 
-                                <li><a href="<?= base_url('laporan-mati') ?>" key="t-laporan-mati">Laporan</a></li>
-                                <li><a href="<?= base_url('import-mati') ?>" key="t-import-mati">Import</a></li>
+                                <li><a href="<?= base_url('mati-laporan') ?>" key="t-mati-laporan">Laporan</a></li>
+                                <li><a href="<?= base_url('mati-import') ?>" key="t-mati-import">Import</a></li>
                                 <?php } ?>
                             </ul>
                         </li>

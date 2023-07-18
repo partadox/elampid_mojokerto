@@ -71,13 +71,33 @@ $routes->post('lahir/update', 'Lahir::update', ["filter" => "authweb:707SP"]);
 $routes->post('lahir/delete', 'Lahir::delete', ["filter" => "authweb:707SP"]); 
 
 /*--- Lahir Laporan ---*/
-$routes->get('lahir-laporan', 'LahirLaporan::index', ["filter" => "authweb:707SP-202AC-303A"]);
-$routes->post('lahir-laporan/export', 'LahirLaporan::export', ["filter" => "authweb:707SP-202AC-303A"]);
+$routes->get('lahir-laporan', 'LahirLaporan::index', ["filter" => "authweb:707SP"]);
+$routes->post('lahir-laporan/export', 'LahirLaporan::export', ["filter" => "authweb:707SP"]);
 
 /*--- Lahir Import ---*/
 $routes->get('lahir-import', 'LahirImport::index', ["filter" => "authweb:707SP"]);
 $routes->post('lahir-import/import', 'LahirImport::import', ["filter" => "authweb:707SP"]);
 $routes->post('lahir-import/save', 'LahirImport::save', ["filter" => "authweb:707SP"]);
+
+
+/*--- Mati Data ---*/
+$routes->get('mati', 'Mati::index', ["filter" => "authweb:707SP-202AC-303A"]);
+$routes->post('mati/filter', 'Mati::filter', ["filter" => "authweb:707SP-202AC-303A"]);             
+$routes->post('mati/list', 'Mati::list', ["filter" => "authweb:707SP-202AC-303A"]); 
+$routes->post('mati/fetch', 'Mati::fetch', ["filter" => "authweb:707SP-202AC-303A"]);
+
+$routes->post('mati/modal', 'Mati::modal', ["filter" => "authweb:707SP-202AC-303A"]);
+$routes->post('mati/update', 'Mati::update', ["filter" => "authweb:707SP"]); 
+$routes->post('mati/delete', 'Mati::delete', ["filter" => "authweb:707SP"]); 
+
+/*--- Mati Laporan ---*/
+$routes->get('mati-laporan', 'MatiLaporan::index', ["filter" => "authweb:707SP"]);
+$routes->post('mati-laporan/export', 'MatiLaporan::export', ["filter" => "authweb:707SP"]);
+
+/*--- Mati Import ---*/
+$routes->get('mati-import', 'MatiImport::index', ["filter" => "authweb:707SP"]);
+$routes->post('mati-import/import', 'MatiImport::import', ["filter" => "authweb:707SP"]);
+$routes->post('mati-import/save', 'MatiImport::save', ["filter" => "authweb:707SP"]);
 
 /*
  * --------------------------------------------------------------------
