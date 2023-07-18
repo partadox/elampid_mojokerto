@@ -3,7 +3,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 
-class Mati extends BaseController
+class Pindah extends BaseController
 {
     /*--- FRONT ---*/
 	public function index()
@@ -44,13 +44,13 @@ class Mati extends BaseController
             $kelurahan       = NULL;
         }
 
-        $list_bulan     = $this->list_bulan('mati');
-        $list_tahun     = $this->list_tahun('mati');
+        $list_bulan     = $this->list_bulan('pindah');
+        $list_tahun     = $this->list_tahun('pindah');
         $list_kecamatan = $this->kecamatan->list();
         $list_kelurahan = $this->kelurahan->list();
 
         $data = [
-            'title'         => 'Data Kematian',
+            'title'         => 'Data Pindah',
             'modul'	        => $modul,
             'bulan'         => $bulan,
             'tahun'         => $tahun,
@@ -61,7 +61,7 @@ class Mati extends BaseController
             'list_kecamatan'=> $list_kecamatan,
             'list_kelurahan'=> $list_kelurahan,
         ];
-        return view('panel/mati/data/index', $data);
+        return view('panel/pindah/data/index', $data);
 	}
 
     public function modal()
@@ -70,20 +70,20 @@ class Mati extends BaseController
 
             $id         = $this->request->getVar('id');
             $modal      = $this->request->getVar('modal');
-            $mati       = $this->mati->find($id);
+            $pindah     = $this->pindah->find($id);
             $kecamatan  = $this->kecamatan->list();
             $kelurahan  = $this->kelurahan->list();
 
             $data = [
-                'title'     => 'DATA KEMATIAN '.$mati['nama'],
+                'title'     => 'DATA PINDAH '.$pindah['nama'],
                 'id'        => $id,
                 'modal'     => $modal,
                 'kecamatan' => $kecamatan,
                 'kelurahan' => $kelurahan,
-                'mati'      => $mati,
+                'pindah'    => $pindah,
             ];
             $msg = [
-                'sukses' => view('panel/mati/data/modal', $data)
+                'sukses' => view('panel/pindah/data/modal', $data)
             ];
             echo json_encode($msg);
         }
@@ -99,7 +99,7 @@ class Mati extends BaseController
 
         $queryParam = 'bulan=' . $bulan . '&tahun=' . $tahun . '&kecamatan=' . $kecamatan . '&kelurahan=' . $kelurahan;
 
-        $newUrl = '/mati?' . $queryParam; 
+        $newUrl = '/pindah?' . $queryParam; 
 
         return redirect()->to($newUrl);
     }
@@ -137,7 +137,7 @@ class Mati extends BaseController
             }
 
             $data = [
-                'title'         => 'Data Kematian',
+                'title'         => 'Data Pindah',
                 'modul'	        => 'Filter',
                 'bulan'         => $bulan,
                 'tahun'         => $tahun,
@@ -149,7 +149,7 @@ class Mati extends BaseController
                 'teks_kelurahan'=> $teks_kelurahan,
             ];
             $msg = [
-                'data' => view('panel/mati/data/list', $data)
+                'data' => view('panel/pindah/data/list', $data)
             ];
             echo json_encode($msg);
         }
@@ -163,7 +163,7 @@ class Mati extends BaseController
             $kecamatan  = $this->request->getVar('kecamatan');
             $kelurahan  = $this->request->getVar('kelurahan');
 
-            $lists 		= $this->mati->get_datatables($bulan, $tahun, $kecamatan, $kelurahan);
+            $lists 		= $this->pindah->get_datatables($bulan, $tahun, $kecamatan, $kelurahan);
             $data 		= [];
             $no 		= $this->request->getPost('start');
 
@@ -187,8 +187,8 @@ class Mati extends BaseController
                 $row[] = $no;
 				$row[] = $list->nik;
                 $row[] = $list->nama;
-				$row[] = shortdate_indo($list->tgl_mati);
-                $row[] = $list->akta;
+                $row[] = $list->alamat;
+				$row[] = shortdate_indo($list->tgl_pindah);
                 // $row[] = $list->kecamatan;
                 // $row[] = $list->kelurahan;
                 $row[] = $row_action;
@@ -196,8 +196,8 @@ class Mati extends BaseController
                 $data[] = $row;
             }
             $output = [
-                "recordTotal"     => $this->mati->count_all(),
-                "recordsFiltered" => $this->mati->count_filtered(),
+                "recordTotal"     => $this->pindah->count_all(),
+                "recordsFiltered" => $this->pindah->count_filtered(),
                 "data"            => $data,
             ];
             echo json_encode($output);
@@ -209,19 +209,21 @@ class Mati extends BaseController
         if ($this->request->isAJAX()) {
             $validation = \Config\Services::validation();
             $rules = [
-                'akta'          => 'required',
+                'kk'            => 'required',
                 'nik'           => 'required',
                 'nama'          => 'required',
                 'kelamin'       => 'required',
-                'tgl_mati'     => 'required',
-                'tgl_aju'     => 'required',
+                'tgl_pindah'    => 'required',
+                'skpwni'        => 'required',
                 'kecamatan'     => 'required',
                 'kelurahan'     => 'required',
+                'alamat'        => 'required',
+                'tujuan'        => 'required',
             ];
     
             $errors = [
-                'tgl_aju' => [
-                    'required'    => 'tgl pengajuan harus diisi.',
+                'skpwni' => [
+                    'required'    => 'skpwni harus diisi.',
                 ],
                 'kecamatan' => [
                     'required'   => 'kecamatan harus dipilih.',
@@ -229,8 +231,8 @@ class Mati extends BaseController
                 'kelurahan' => [
                     'required'   => 'kelurahan harus dipilih.',
                 ],
-                'akta' => [
-                    'required'   => 'akta harus dipilih.',
+                'kk' => [
+                    'required'   => 'kk harus dipilih.',
                 ],
                 'nik' => [
                     'required'   => 'nik harus dipilih.',
@@ -238,41 +240,51 @@ class Mati extends BaseController
                 'nama' => [
                     'required'   => 'nama harus dipilih.',
                 ],
-                'tgl_mati' => [
-                    'required'   => 'tempat mati harus dipilih.',
+                'tempat_pindah' => [
+                    'required'   => 'tempat pindah harus dipilih.',
                 ],
                 'kelamin' => [
                     'required'   => 'kelamin harus dipilih.',
+                ],
+                'alamat' => [
+                    'required'   => 'alamat harus dipilih.',
+                ],
+                'tujuan' => [
+                    'required'   => 'tujuan harus dipilih.',
                 ],
             ];
             $valid = $this->validate($rules, $errors);
             if (!$valid) {
                 $response = [
                     'error' => [
-                        'tgl_aju'       => $validation->getError('tgl_aju'),
+                        'skpwni'        => $validation->getError('skpwni'),
                         'kecamatan'     => $validation->getError('kecamatan'),
                         'kelurahan'     => $validation->getError('kelurahan'),
-                        'akta'          => $validation->getError('akta'),
+                        'kk'            => $validation->getError('kk'),
                         'nik'           => $validation->getError('nik'),
                         'nama'          => $validation->getError('nama'),
-                        'tgl_mati'      => $validation->getError('tgl_mati'),
+                        'tgl_pindah'    => $validation->getError('tgl_pindah'),
                         'kelamin'       => $validation->getError('kelamin'),
+                        'alamat'        => $validation->getError('alamat'),
+                        'tujuan'        => $validation->getError('tujuan'),
                     ]
                 ];
             } else {
                 $id = $this->request->getVar('id');
                 $updateData = [
-                    'tgl_aju'           => $this->request->getVar('tgl_aju'),
+                    'skpwni'            => str_replace(' ', '', strtoupper($this->request->getVar('skpwni'))),
                     'kecamatan'         => strtoupper($this->request->getVar('kecamatan')),
                     'kelurahan'         => strtoupper($this->request->getVar('kelurahan')),
-                    'akta'              => str_replace(' ', '', strtoupper($this->request->getVar('akta'))),
+                    'kk'                => str_replace(' ', '', strtoupper($this->request->getVar('kk'))),
                     'nik'               => str_replace(' ', '', strtoupper($this->request->getVar('nik'))),
                     'nama'              => strtoupper($this->request->getVar('nama')),
-                    'tgl_mati'          => $this->request->getVar('tgl_mati'),
+                    'tgl_pindah'        => $this->request->getVar('tgl_pindah'),
                     'kelamin'           => str_replace(' ', '', strtoupper($this->request->getVar('kelamin'))),
+                    'alamat'            => strtoupper($this->request->getVar('alamat')),
+                    'tujuan'            => strtoupper($this->request->getVar('tujuan')),
                     'edited'            => date('Y-m-d H:i:s'),
                 ];
-                $this->mati->update($id, $updateData);
+                $this->pindah->update($id, $updateData);
 
                 $response = [
                     'success' => true,
@@ -289,7 +301,7 @@ class Mati extends BaseController
         if ($this->request->isAJAX()) {
 
             $id  = $this->request->getVar('id');
-            $this->mati->delete($id);
+            $this->pindah->delete($id);
                 $response = [
                     'success' => true,
                     'icon'    => 'success',

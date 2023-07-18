@@ -183,8 +183,8 @@
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="<?= base_url('pindah') ?>" key="t-pindah">Data</a></li>
                                 <?php if (session('role') == '707SP') { ?> 
-                                <li><a href="<?= base_url('laporan-pindah') ?>" key="t-laporan-pindah">Laporan</a></li>
-                                <li><a href="<?= base_url('import-pindah') ?>" key="t-import-pindah">Import</a></li>
+                                <li><a href="<?= base_url('pindah-laporan') ?>" key="t-pindah-laporan">Laporan</a></li>
+                                <li><a href="<?= base_url('pindah-import') ?>" key="t-pindah-import">Import</a></li>
                                 <?php } ?>
                             </ul>
                         </li>
@@ -197,8 +197,8 @@
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="<?= base_url('datang') ?>" key="t-datang">Data</a></li>
                                 <?php if (session('role') == '707SP') { ?> 
-                                <li><a href="<?= base_url('laporan-datang') ?>" key="t-laporan-datang">Laporan</a></li>
-                                <li><a href="<?= base_url('import-datang') ?>" key="t-import-datang">Import</a></li>
+                                <li><a href="<?= base_url('datang-laporan') ?>" key="t-datang-laporan">Laporan</a></li>
+                                <li><a href="<?= base_url('datang-import') ?>" key="t-datang-import">Import</a></li>
                                 <?php } ?>
                             </ul>
                         </li>

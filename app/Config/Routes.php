@@ -99,6 +99,44 @@ $routes->get('mati-import', 'MatiImport::index', ["filter" => "authweb:707SP"]);
 $routes->post('mati-import/import', 'MatiImport::import', ["filter" => "authweb:707SP"]);
 $routes->post('mati-import/save', 'MatiImport::save', ["filter" => "authweb:707SP"]);
 
+/*--- Pindah Data ---*/
+$routes->get('pindah', 'Pindah::index', ["filter" => "authweb:707SP-202AC-303A"]);
+$routes->post('pindah/filter', 'Pindah::filter', ["filter" => "authweb:707SP-202AC-303A"]);             
+$routes->post('pindah/list', 'Pindah::list', ["filter" => "authweb:707SP-202AC-303A"]); 
+$routes->post('pindah/fetch', 'Pindah::fetch', ["filter" => "authweb:707SP-202AC-303A"]);
+
+$routes->post('pindah/modal', 'Pindah::modal', ["filter" => "authweb:707SP-202AC-303A"]);
+$routes->post('pindah/update', 'Pindah::update', ["filter" => "authweb:707SP"]); 
+$routes->post('pindah/delete', 'Pindah::delete', ["filter" => "authweb:707SP"]); 
+
+/*--- Pindah Laporan ---*/
+$routes->get('pindah-laporan', 'PindahLaporan::index', ["filter" => "authweb:707SP"]);
+$routes->post('pindah-laporan/export', 'PindahLaporan::export', ["filter" => "authweb:707SP"]);
+
+/*--- Pindah Import ---*/
+$routes->get('pindah-import', 'PindahImport::index', ["filter" => "authweb:707SP"]);
+$routes->post('pindah-import/import', 'PindahImport::import', ["filter" => "authweb:707SP"]);
+$routes->post('pindah-import/save', 'PindahImport::save', ["filter" => "authweb:707SP"]);
+
+/*--- Datang Data ---*/
+$routes->get('datang', 'Datang::index', ["filter" => "authweb:707SP-202AC-303A"]);
+$routes->post('datang/filter', 'Datang::filter', ["filter" => "authweb:707SP-202AC-303A"]);             
+$routes->post('datang/list', 'Datang::list', ["filter" => "authweb:707SP-202AC-303A"]); 
+$routes->post('datang/fetch', 'Datang::fetch', ["filter" => "authweb:707SP-202AC-303A"]);
+
+$routes->post('datang/modal', 'Datang::modal', ["filter" => "authweb:707SP-202AC-303A"]);
+$routes->post('datang/update', 'Datang::update', ["filter" => "authweb:707SP"]); 
+$routes->post('datang/delete', 'Datang::delete', ["filter" => "authweb:707SP"]); 
+
+/*--- Datang Laporan ---*/
+$routes->get('datang-laporan', 'DatangLaporan::index', ["filter" => "authweb:707SP"]);
+$routes->post('datang-laporan/export', 'DatangLaporan::export', ["filter" => "authweb:707SP"]);
+
+/*--- Datang Import ---*/
+$routes->get('datang-import', 'DatangImport::index', ["filter" => "authweb:707SP"]);
+$routes->post('datang-import/import', 'DatangImport::import', ["filter" => "authweb:707SP"]);
+$routes->post('datang-import/save', 'DatangImport::save', ["filter" => "authweb:707SP"]);
+
 /*
  * --------------------------------------------------------------------
  * 202AC - 303A

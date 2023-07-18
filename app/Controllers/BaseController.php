@@ -66,7 +66,7 @@ class BaseController extends Controller
 		$this->datang 		= new Model_dt_Datang();
 		$this->lahir		= new Model_dt_Lahir($request);
 		$this->mati 		= new Model_dt_Mati($request);
-		$this->pindah 		= new Model_dt_Pindah();
+		$this->pindah 		= new Model_dt_Pindah($request);
 	}
 
 	public function list_bulan($modul){
