@@ -56,8 +56,8 @@ class DatangImport extends BaseController
             $no         = $row['column_8'];
             $nik        = $row['column_9'];
             $nama       = $row['column_10'];
-            $shbkel     = $row['column_10'];
-            $kelamin    = $row['column_10'];
+            $shbkel     = $row['column_11'];
+            $kelamin    = $row['column_12'];
             $this->datang->insert([
                 'tgl_datang'    => $tgl_datang,
                 'no_datang'     => str_replace(' ', '', strtoupper($no_datang)),
