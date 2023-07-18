@@ -67,7 +67,6 @@ class Landing extends BaseController
         $mati   = json_encode($Data_mati) ;
         $pindah = json_encode($Data_pindah);
         $datang = json_encode($Data_datang) ;
-        // echo($lahir);
         $data = [
 			'title'         => 'Dispendukcapil Kota Mojokerto',
             'first_month'   => $first_month,

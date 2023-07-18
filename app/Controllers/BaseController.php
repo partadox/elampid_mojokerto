@@ -63,7 +63,7 @@ class BaseController extends Controller
 		$this->visitor		= new Model_Visitor();
 		$this->kecamatan	= new Model_Kecamatan();
 		$this->kelurahan	= new Model_Kelurahan();
-		$this->datang 		= new Model_dt_Datang();
+		$this->datang 		= new Model_dt_Datang($request);
 		$this->lahir		= new Model_dt_Lahir($request);
 		$this->mati 		= new Model_dt_Mati($request);
 		$this->pindah 		= new Model_dt_Pindah($request);

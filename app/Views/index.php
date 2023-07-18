@@ -521,6 +521,88 @@
                 height: 350
             });
         });
+
+        // Datang Chart
+        var donutpieChartWidth = $("#datang-charts").width();
+        var container = document.getElementById('datang-charts');
+        var data = {
+            categories: ['KECAMATAN'],
+            series: <?= $datang?>
+            
+        };
+        var options = {
+            exportMenu: {
+                visible: false
+            },
+            chart: {
+                width: donutpieChartWidth,
+                height: 380,
+                // title: 'Periode',
+                format: function(value, chartType, areaType, valuetype, legendName) {
+                    if (areaType === 'makingSeriesLabel') { // formatting at series area
+                        value = value;
+                    }
+
+                    return value;
+                }
+            },
+            series: {
+                radiusRange: ['40%', '100%'],
+                showLabel: true
+            },
+            // tooltip: {
+            //     suffix: '%'
+            // },
+            legend: {
+                align: 'top'
+            },
+        };
+        var theme = {
+            chart: {
+                background: {
+                    color: '#fff',
+                    opacity: 0
+                },
+            },
+            title: {
+                color: '#8791af',
+            },
+
+            plot: {
+                lineColor: 'rgba(166, 176, 207, 0.1)'
+            },
+            legend: {
+                label: {
+                    color: '#8791af'
+                }
+            },
+            series: {
+                series: {
+                    colors: [
+                        '#556ee6', '#34c38f', '#f46a6a', '#50a5f1', '#f1b44c'
+                    ]
+                },
+                label: {
+                    color: '#fff',
+                    fontFamily: 'sans-serif'
+                }
+            }
+        };
+
+        // For apply theme
+
+        tui.chart.registerTheme('myTheme', theme);
+        options.theme = 'myTheme';
+
+        var donutChart = tui.chart.pieChart(container, data, options);
+
+        $( window ).resize(function() {
+            donutpieChartWidth = $("#datang-charts").width();
+            donutChart.resize({
+                width: donutpieChartWidth,
+                height: 350
+            });
+        });
     </script>
 
 </html>
