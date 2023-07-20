@@ -64,6 +64,12 @@ class PindahLaporan extends BaseController
 		
         $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $sheet       = $spreadsheet->getActiveSheet();
+        // Get the page setup
+        $pageSetup = $sheet->getPageSetup();
+        // Set the orientation to landscape
+        $pageSetup->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+        // Set the page setup back to the worksheet
+        $sheet->setPageSetup($pageSetup);
         $textOnly = [
             'font' => [
                 'bold' => true,
