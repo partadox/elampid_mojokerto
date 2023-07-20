@@ -54,11 +54,6 @@ $routes->post('dologin', 'Auth::dologin');
 /*--- Dashboard ---*/
 $routes->get('dashboard', 'Dashboard::index', ["filter" => "authweb:707SP-202AC-303A"]); 
 
-/*
- * --------------------------------------------------------------------
- * 707SP
- * --------------------------------------------------------------------
- */
 
 /*--- Lahir Data ---*/
 $routes->get('lahir', 'Lahir::index', ["filter" => "authweb:707SP-202AC-303A"]);
@@ -137,11 +132,16 @@ $routes->get('datang-import', 'DatangImport::index', ["filter" => "authweb:707SP
 $routes->post('datang-import/import', 'DatangImport::import', ["filter" => "authweb:707SP"]);
 $routes->post('datang-import/save', 'DatangImport::save', ["filter" => "authweb:707SP"]);
 
-/*
- * --------------------------------------------------------------------
- * 202AC - 303A
- * --------------------------------------------------------------------
- */
+/*--- User ---*/
+$routes->get('auth-user', 'User::index', ["filter" => "authweb:707SP"]);
+$routes->get('user/getdata', 'User::getdata', ["filter" => "authweb:707SP"]);
+$routes->get('user/formtambah', 'User::formtambah', ["filter" => "authweb:707SP"]);
+$routes->post('user/simpan', 'User::simpan', ["filter" => "authweb:707SP"]);
+$routes->post('user/formedit', 'User::formedit', ["filter" => "authweb:707SP"]);
+$routes->post('user/formedit_pass', 'User::formedit_pass', ["filter" => "authweb:707SP"]);
+$routes->post('user/hapus', 'User::hapus', ["filter" => "authweb:707SP"]);
+$routes->post('user/update', 'User::update', ["filter" => "authweb:707SP"]);
+$routes->post('user/update_pass', 'User::update_pass', ["filter" => "authweb:707SP"]);
 
 /*
  * --------------------------------------------------------------------

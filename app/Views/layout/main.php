@@ -220,13 +220,14 @@
                                 <li><a href="<?= base_url('kelurahan') ?>" key="t-kelurahan">Kelurahan</a></li>
                             </ul>
                         </li> -->
-
-                        <li>
-                            <a href="<?= base_url('user-manage') ?>" class="waves-effect">
-                                <i class="bx bx-user-circle"></i>
-                                <span key="t-user-manage">Manajemen User</span>
-                            </a>
-                        </li>
+                        <?php if (session('role') == '707SP') { ?> 
+                            <li>
+                                <a href="<?= base_url('auth-user') ?>" class="waves-effect">
+                                    <i class="bx bx-user-circle"></i>
+                                    <span key="t-auth-user">Manajemen User</span>
+                                </a>
+                            </li>
+                        <?php } ?>
 
                         <!-- <li>
                             <a href="<?= base_url('log') ?>" class="waves-effect">
