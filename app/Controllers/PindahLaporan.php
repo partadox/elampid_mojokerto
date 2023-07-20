@@ -115,7 +115,7 @@ class PindahLaporan extends BaseController
         $judulT1 = "LAPORAN DATA PINDAH KOTA MOJOKERTO TAHUN " .$tahun;
         $sheet->setCellValue('A1', $judulT1);
         $sheet->getStyle('A1')->applyFromArray($textOnly);
-        $sheet->mergeCells('A1:J1');
+        $sheet->mergeCells('A1:AP2');
 
         //*---Merge Kesamping ---*/
         $sheet->mergeCells('D3:F3');

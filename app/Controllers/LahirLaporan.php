@@ -140,17 +140,17 @@ class LahirLaporan extends BaseController
         $judulT1 = "LAPORAN DATA KELAHIRAN KOTA MOJOKERTO TAHUN " .$tahun;
         $sheet->setCellValue('A1', $judulT1);
         $sheet->getStyle('A1')->applyFromArray($textOnly);
-        $sheet->mergeCells('A1:J1');
+        $sheet->mergeCells('A1:Z1');
 
         $judulT2 = "BERDASARKAN JENIS KELAMIN";
-        $sheet->setCellValue('A9', $judulT2);
-        $sheet->getStyle('A9')->applyFromArray($textOnly);
-        $sheet->mergeCells('A9:J9');
+        $sheet->setCellValue('A7', $judulT2);
+        $sheet->getStyle('A7')->applyFromArray($textOnly);
+        $sheet->mergeCells('A7:Z10');
 
         $judulT3 = "BERDASARKAN KATEGORI";
-        $sheet->setCellValue('A34', $judulT3);
-        $sheet->getStyle('A34')->applyFromArray($textOnly);
-        $sheet->mergeCells('A34:J34');
+        $sheet->setCellValue('A33', $judulT3);
+        $sheet->getStyle('A33')->applyFromArray($textOnly);
+        $sheet->mergeCells('A33:Z35');
 
         //*--- For Merge Tabel 1 ---*/
         for ($i=2; $i <= 6 ; $i++) { 
