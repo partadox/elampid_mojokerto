@@ -117,8 +117,6 @@ class PindahLaporan extends BaseController
         $sheet->getStyle('A1')->applyFromArray($textOnly);
         $sheet->mergeCells('A1:AP2');
 
-        $sheet->getPageSetup()->setOrientation(PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_PORTRAIT);
-
         //*---Merge Kesamping ---*/
         $sheet->mergeCells('D3:F3');
         $sheet->mergeCells('G3:I3');
@@ -1225,10 +1223,10 @@ class PindahLaporan extends BaseController
             $writer->save('php://output');
         }elseif ($extension == 'pdf') {
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Pdf\Mpdf($spreadsheet);
+            $writer->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
             header('Content-Type: application/pdf');
             header('Content-Disposition: attachment;filename=' . $filename . '.pdf');
             header('Cache-Control: max-age=0');
-            $writer->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
             $writer->save('php://output');
         } 
         

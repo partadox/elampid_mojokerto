@@ -153,8 +153,6 @@ class LahirLaporan extends BaseController
         $sheet->getStyle('A33')->applyFromArray($textOnly);
         $sheet->mergeCells('A33:Z35');
 
-        $sheet->getPageSetup()->setOrientation(PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_PORTRAIT);
-
 
         //*--- For Merge Tabel 1 ---*/
         for ($i=2; $i <= 6 ; $i++) { 
@@ -1450,10 +1448,10 @@ class LahirLaporan extends BaseController
             $writer->save('php://output');
         }elseif ($extension == 'pdf') {
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Pdf\Mpdf($spreadsheet);
+            $writer->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
             header('Content-Type: application/pdf');
             header('Content-Disposition: attachment;filename=' . $filename . '.pdf');
             header('Cache-Control: max-age=0');
-            $writer->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
             $writer->save('php://output');
         } 
         
