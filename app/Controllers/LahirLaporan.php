@@ -141,6 +141,7 @@ class LahirLaporan extends BaseController
         $sheet->setCellValue('A1', $judulT1);
         $sheet->getStyle('A1')->applyFromArray($textOnly);
         $sheet->mergeCells('A1:Z1');
+        $sheet->mergeCells('A2:A6');
 
         $judulT2 = "BERDASARKAN JENIS KELAMIN";
         $sheet->setCellValue('A7', $judulT2);
@@ -151,6 +152,9 @@ class LahirLaporan extends BaseController
         $sheet->setCellValue('A33', $judulT3);
         $sheet->getStyle('A33')->applyFromArray($textOnly);
         $sheet->mergeCells('A33:Z35');
+
+        $sheet->getPageSetup()->setOrientation(PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_PORTRAIT);
+
 
         //*--- For Merge Tabel 1 ---*/
         for ($i=2; $i <= 6 ; $i++) { 

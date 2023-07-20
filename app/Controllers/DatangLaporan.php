@@ -117,6 +117,8 @@ class DatangLaporan extends BaseController
         $sheet->getStyle('A1')->applyFromArray($textOnly);
         $sheet->mergeCells('A1:AP2');
 
+        $sheet->getPageSetup()->setOrientation(PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_PORTRAIT);
+
         //*---Merge Kesamping ---*/
         $sheet->mergeCells('D3:F3');
         $sheet->mergeCells('G3:I3');
