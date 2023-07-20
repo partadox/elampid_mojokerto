@@ -1448,7 +1448,7 @@ class LahirLaporan extends BaseController
             $writer->save('php://output');
         }elseif ($extension == 'pdf') {
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Pdf\Mpdf($spreadsheet);
-            $writer->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+            $writer->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_POTRAIT);
             header('Content-Type: application/pdf');
             header('Content-Disposition: attachment;filename=' . $filename . '.pdf');
             header('Cache-Control: max-age=0');
