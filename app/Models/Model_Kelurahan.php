@@ -25,4 +25,12 @@ class Model_Kelurahan extends Model
             ->orderBy('idl', 'ASC')
             ->get()->getResultArray();
     }
+
+    public function find_kec($kelurahan)
+    {
+        return $this->table('tb_kelurahan')
+            ->select('kec')
+            ->where('idl', $kelurahan)
+            ->get()->getUnbufferedRow();
+    }
 }

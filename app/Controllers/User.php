@@ -38,6 +38,7 @@ class User extends BaseController
             $data = [
                 'title'     => 'Form Input User Baru',
                 'kecamatan' => $this->kecamatan->list(),
+                'kelurahan' => $this->kelurahan->list(),
             ];
             $msg = [
                 'data' => view('panel/user/tambah', $data)
@@ -95,11 +96,18 @@ class User extends BaseController
             } else {
                 $password = $this->request->getVar('password');
                 $kecamatan= NULL;
+                $kelurahan= NULL;
                 if ($this->request->getVar('role') == "202AC") {
                     $kecamatan = $this->request->getVar('kecamatan');
                     $uid_code  = 'C';
+                    $idcl      = $kecamatan;
+                } elseif ($this->request->getVar('role') == "303AL") {
+                    $kelurahan = $this->request->getVar('kelurahan');
+                    $uid_code  = 'L';
+                    $idcl      = $kelurahan;
                 } elseif ($this->request->getVar('role') == "707SP") {
                     $uid_code  = 'S';
+                    $idcl      = '';
                 }
                 $last_user= $this->user->orderBy('uid', 'desc')->first();
                 $last_num = substr($last_user['uid'], -4); // get last 4 char
@@ -110,7 +118,7 @@ class User extends BaseController
                 $username = $this->request->getVar('username');
                 $password = (password_hash($password,PASSWORD_BCRYPT));
                 $role     = $this->request->getVar('role');
-                $idcl     = $kecamatan;
+                
                 $sql = "INSERT INTO tb_user (uid, nama, username, password, role, idcl) VALUES ('$uid', '$nama', '$username', '$password', '$role', '$idcl')";
                 $this->db->query($sql);
 

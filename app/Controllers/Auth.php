@@ -65,7 +65,7 @@ class Auth extends BaseController
                     'uid'       => $user['uid'],
                     'nama'      => $user['nama'],
                     'role'      => $user['role'],
-                    'idlc'      => $user['idcl'],
+                    'idcl'      => $user['idcl'],
                 ];
 
                 $this->session->set($simpan_session);

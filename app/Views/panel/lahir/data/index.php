@@ -30,24 +30,49 @@
                                   <?php } ?>
                               </select>
                             </div>
-                            <div class="col">
-                              <label for="kecamatan">KECAMATAN<code>*</code></label>
-                              <select class="form-control" name="kecamatan" id="kecamatan">
-                                  <option value="all" <?php if ($kecamatan == 'all') echo "selected"; ?> > SEMUA </option>
-                                  <?php foreach ($list_kecamatan as $key => $data) { ?>
-                                  <option value="<?= $data['idc'] ?>" <?php if ($data['idc'] == $kecamatan) echo "selected"; ?> > <?= $data['idc'] ?> </option>
-                                  <?php } ?>
+                            <?php if (session('role') == '707SP') { ?>
+                              <div class="col">
+                                <label for="kecamatan">KECAMATAN<code>*</code></label>
+                                <select class="form-control" name="kecamatan" id="kecamatan">
+                                    <option value="all" <?php if ($kecamatan == 'all') echo "selected"; ?> > SEMUA </option>
+                                    <?php foreach ($list_kecamatan as $key => $data) { ?>
+                                    <option value="<?= $data['idc'] ?>" <?php if ($data['idc'] == $kecamatan) echo "selected"; ?> > <?= $data['idc'] ?> </option>
+                                    <?php } ?>
+                                </select>
+                              </div>
+                              <div class="col" id="divKelurahan" style="display: none;">
+                                <label for="kelurahan">KELURAHAN<code>*</code></label>
+                                <select class="form-control" name="kelurahan" id="kelurahan">
+                                  <option value="all" <?php if ($kelurahan == 'all') echo "selected"; ?> > SEMUA </option>
+                                    <?php foreach ($list_kelurahan as $key => $data) { ?>
+                                    <option class="<?= $data['kec'] ?>" value="<?= $data['idl'] ?>" <?php if ($data['idl'] == $kelurahan) echo "selected"; ?> > <?= $data['idl'] ?> </option>
+                                    <?php } ?>
+                                </select>
+                              </div>
+                            <?php } ?>
+                            <?php if (session('role') == '202AC') { ?>
+                              <select class="form-control" name="kecamatan" id="kecamatan" style="display: none;">
+                                    <option value="<?= session('idcl') ?>" selected> <?= session('idcl') ?> </option>
                               </select>
-                            </div>
-                            <div class="col" id="divKelurahan" style="display: none;">
-                              <label for="kelurahan">KELURAHAN<code>*</code></label>
-                              <select class="form-control" name="kelurahan" id="kelurahan">
-                                <option value="all" <?php if ($kelurahan == 'all') echo "selected"; ?> > SEMUA </option>
-                                  <?php foreach ($list_kelurahan as $key => $data) { ?>
-                                  <option class="<?= $data['kec'] ?>" value="<?= $data['idl'] ?>" <?php if ($data['idl'] == $kelurahan) echo "selected"; ?> > <?= $data['idl'] ?> </option>
-                                  <?php } ?>
+                              <div class="col" id="divKelurahan">
+                                <label for="kelurahan">KELURAHAN<code>*</code></label>
+                                <select class="form-control" name="kelurahan" id="kelurahan">
+                                  <option value="all" <?php if ($kelurahan == 'all') echo "selected"; ?> > SEMUA </option>
+                                    <?php foreach ($list_kelurahan as $key => $data) { ?>
+                                    <option class="<?= $data['kec'] ?>" value="<?= $data['idl'] ?>" <?php if ($data['idl'] == $kelurahan) echo "selected"; ?> > <?= $data['idl'] ?> </option>
+                                    <?php } ?>
+                                </select>
+                              </div>
+                            <?php } ?>
+                            <?php if (session('role') == '303AL') { ?>
+                              <select class="form-control" name="kecamatan" id="kecamatan"  style="display: none;">
+                                    <option value="<?= $kec_select ?>" selected> <?= $kec_select ?> </option>
                               </select>
-                            </div>
+                              <select class="form-control" name="kelurahan" id="kelurahan"  style="display: none;">
+                                    <option value="<?= session('idcl') ?>" selected> <?= session('idcl') ?> </option>
+                              </select>
+                            <?php } ?>
+                            
                             <div class="col">
                               <button type="submit" class="btn btn-success mt-4"><i class="bx bx-search"></i> TAMPIL</button>
                             </div>
@@ -64,32 +89,72 @@
 <!-- End Page-content -->
 
 <div class="viewmodal"></div>
+<?php if (session('role') == '707SP') { ?>
+  <script>
+    document.getElementById("kecamatan").onchange = function() {
+      let selector = document.getElementById('kecamatan');
+      let value = selector[selector.selectedIndex].value;
+      let divkelurahanSelect = document.getElementById("divKelurahan");
+      let kelurahanSelect = document.getElementById("kelurahan");
+      kelurahanSelect.selectedIndex = 0; // Reset the selected value
 
-<script>
-  document.getElementById("kecamatan").onchange = function() {
-    let selector = document.getElementById('kecamatan');
-    let value = selector[selector.selectedIndex].value;
-    let divkelurahanSelect = document.getElementById("divKelurahan");
-    let kelurahanSelect = document.getElementById("kelurahan");
-    kelurahanSelect.selectedIndex = 0; // Reset the selected value
+      let nodeList = kelurahanSelect.querySelectorAll("option");
 
-    let nodeList = kelurahanSelect.querySelectorAll("option");
+      if (value === "all") {
+        divkelurahanSelect.style.display = "none";
+      } else {
+        divkelurahanSelect.style.display = "block";
 
-    if (value === "all") {
-      divkelurahanSelect.style.display = "none";
-    } else {
-      divkelurahanSelect.style.display = "block";
+        nodeList.forEach(function(option) {
+          if (option.classList.contains(value)) {
+            option.style.display = "block";
+          } else {
+            option.style.display = "none";
+          }
+        });
+      }
+    };
+  </script>
+<?php } ?>
+<?php if (session('role') == '202AC') { ?>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      let selector = document.getElementById('kecamatan');
+      let value = selector[selector.selectedIndex].value;
+      let divkelurahanSelect = document.getElementById("divKelurahan");
+      let kelurahanSelect = document.getElementById("kelurahan");
+      kelurahanSelect.selectedIndex = 0; // Reset the selected value
 
-      nodeList.forEach(function(option) {
-        if (option.classList.contains(value)) {
-          option.style.display = "block";
+      let nodeList = kelurahanSelect.querySelectorAll("option");
+
+      function updateKelurahanOptions() {
+        if (value === "all") {
+          divkelurahanSelect.style.display = "none";
         } else {
-          option.style.display = "none";
+          divkelurahanSelect.style.display = "block";
+
+          nodeList.forEach(function(option) {
+            if (option.classList.contains(value)) {
+              option.style.display = "block";
+            } else {
+              option.style.display = "none";
+            }
+          });
         }
-      });
-    }
-  };
-</script>
+      }
+
+      // Call the function to update options based on the initial selected kecamatan
+      updateKelurahanOptions();
+
+      // Add onchange event to the kecamatan element
+      selector.onchange = function() {
+        value = selector[selector.selectedIndex].value;
+        kelurahanSelect.selectedIndex = 0; // Reset the selected value
+        updateKelurahanOptions();
+      };
+    });
+  </script>
+<?php } ?>
 
 <?php if($modul == 'Filter') { ?>
   <script>

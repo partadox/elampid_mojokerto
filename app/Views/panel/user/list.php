@@ -27,6 +27,10 @@
                         <h6>
                             <span class="badge bg-primary">USER KECAMATAN</span>
                         </h6> <strong><?= $data['idcl'] ?></strong>
+                    <?php } elseif ($data['role'] == '303AL') { ?>
+                        <h6>
+                            <span class="badge bg-warning">USER KELURAHAN</span>
+                        </h6> <strong><?= $data['idcl'] ?></strong>
                     <?php } ?>
                 </td>
                 <td>

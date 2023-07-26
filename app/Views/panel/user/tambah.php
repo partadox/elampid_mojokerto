@@ -25,7 +25,7 @@
 
                 <div class="form-group">
                     <label>Password <code>*</code></label> <br>
-                    <code>Password Kombinsasi dari huruf kecil, huruf kapital, angka, simbol dan minimal 8 karakter</code>
+                    <code>Password Kombinsasi dari huruf kecil, huruf kapital, angka, simbol dan minimal 8 karakter</code> <br>
                     <input type="password" class="form-control" id="password" name="password" required>
                     <div class="invalid-feedback errorPass">
                     </div>
@@ -37,13 +37,14 @@
                         <option value="" selected disabled> PILIH... </option>
                         <option value="707SP" > USER DINAS </option>
                         <option value="202AC" > USER KECAMATAN </option>
+                        <option value="303AL" > USER KELURAHAN </option>
                     </select>
                     <div class="invalid-feedback errorrole">
                     </div>
                 </div>
 
 
-                <div class="form-group" id="divKecamatan" style="display: none;">
+                <div class="form-group mt-2" id="divKecamatan" style="display: none;">
                     <label>Kecamatan <code>*</code></label>
                     <select class="form-control" name="kecamatan" id="kecamatan">
                         <option value="" selected disabled> PILIH... </option>
@@ -51,8 +52,18 @@
                         <option value="<?= $data['idc'] ?>" > <?= $data['idc'] ?> </option>
                         <?php } ?>
                     </select>
-                    <div class="invalid-feedback errorkecamatan">
-                    </div>
+                    <!-- <div class="invalid-feedback errorkecamatan"></div> -->
+                </div>
+
+                <div class="form-group mt-2" id="divKelurahan" style="display: none;">
+                    <label>Kelurahan <code>*</code></label>
+                    <select class="form-control" name="kelurahan" id="kelurahan">
+                        <option value="" selected disabled> PILIH... </option>
+                        <?php foreach ($kelurahan as $key => $data) { ?>
+                        <option value="<?= $data['idl'] ?>" > <?= $data['idl'] ?> </option>
+                        <?php } ?>
+                    </select>
+                    <!-- <div class="invalid-feedback errorkecamatan"></div> -->
                 </div>
 
 
@@ -71,12 +82,18 @@
         let value = selector[selector.selectedIndex].value;
         let divkecamatanSelect = document.getElementById("divKecamatan");
         let kecamatanSelect = document.getElementById("kecamatan");
+        let divkelurahanSelect = document.getElementById("divKelurahan");
+        let kelurahanSelect = document.getElementById("kelurahan");
         if (value === "202AC") {
             divkecamatanSelect.style.display = "block";
             kecamatanSelect.setAttribute("required", "required");
-        } else {
+            divkelurahanSelect.style.display = "none";
+            kelurahanSelect.removeAttribute("required");
+        } else if (value === "303AL") {
             divkecamatanSelect.style.display = "none";
             kecamatanSelect.removeAttribute("required");
+            divkelurahanSelect.style.display = "block";
+            kelurahanSelect.setAttribute("required", "required");
         }
     };
     $(document).ready(function() {
@@ -91,6 +108,7 @@
                     password: $('input#password').val(),
                     role: $('select#role').val(),
                     kecamatan: $('select#kecamatan').val(),
+                    kelurahan: $('select#kelurahan').val(),
                 },
                 dataType: "json",
                 beforeSend: function() {

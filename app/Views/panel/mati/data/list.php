@@ -10,8 +10,8 @@
             <th width=15%>NAMA</th>
             <th width=15%>TGL MATI</th>
             <th width=15%>AKTA MATI</th>
-            <!-- <th width=9%>Kec</th>
-            <th width=9%>Kel</th> -->
+            <th width=9%>KEC.</th>
+            <th width=9%>KEL.</th>
             <th width=8%></th>
         </tr>
     </thead>

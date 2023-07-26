@@ -52,16 +52,16 @@ $routes->post('logout', 'Auth::logout');
 $routes->post('dologin', 'Auth::dologin');
 
 /*--- Dashboard ---*/
-$routes->get('dashboard', 'Dashboard::index', ["filter" => "authweb:707SP-202AC-303A"]); 
+$routes->get('dashboard', 'Dashboard::index', ["filter" => "authweb:707SP-202AC-303AL"]); 
 
 
 /*--- Lahir Data ---*/
-$routes->get('lahir', 'Lahir::index', ["filter" => "authweb:707SP-202AC-303A"]);
-$routes->post('lahir/filter', 'Lahir::filter', ["filter" => "authweb:707SP-202AC-303A"]);             
-$routes->post('lahir/list', 'Lahir::list', ["filter" => "authweb:707SP-202AC-303A"]); 
-$routes->post('lahir/fetch', 'Lahir::fetch', ["filter" => "authweb:707SP-202AC-303A"]);
+$routes->get('lahir', 'Lahir::index', ["filter" => "authweb:707SP-202AC-303AL"]);
+$routes->post('lahir/filter', 'Lahir::filter', ["filter" => "authweb:707SP-202AC-303AL"]);             
+$routes->post('lahir/list', 'Lahir::list', ["filter" => "authweb:707SP-202AC-303AL"]); 
+$routes->post('lahir/fetch', 'Lahir::fetch', ["filter" => "authweb:707SP-202AC-303AL"]);
 
-$routes->post('lahir/modal', 'Lahir::modal', ["filter" => "authweb:707SP-202AC-303A"]);
+$routes->post('lahir/modal', 'Lahir::modal', ["filter" => "authweb:707SP-202AC-303AL"]);
 $routes->post('lahir/update', 'Lahir::update', ["filter" => "authweb:707SP"]); 
 $routes->post('lahir/delete', 'Lahir::delete', ["filter" => "authweb:707SP"]); 
 
@@ -76,12 +76,12 @@ $routes->post('lahir-import/save', 'LahirImport::save', ["filter" => "authweb:70
 
 
 /*--- Mati Data ---*/
-$routes->get('mati', 'Mati::index', ["filter" => "authweb:707SP-202AC-303A"]);
-$routes->post('mati/filter', 'Mati::filter', ["filter" => "authweb:707SP-202AC-303A"]);             
-$routes->post('mati/list', 'Mati::list', ["filter" => "authweb:707SP-202AC-303A"]); 
-$routes->post('mati/fetch', 'Mati::fetch', ["filter" => "authweb:707SP-202AC-303A"]);
+$routes->get('mati', 'Mati::index', ["filter" => "authweb:707SP-202AC-303AL"]);
+$routes->post('mati/filter', 'Mati::filter', ["filter" => "authweb:707SP-202AC-303AL"]);             
+$routes->post('mati/list', 'Mati::list', ["filter" => "authweb:707SP-202AC-303AL"]); 
+$routes->post('mati/fetch', 'Mati::fetch', ["filter" => "authweb:707SP-202AC-303AL"]);
 
-$routes->post('mati/modal', 'Mati::modal', ["filter" => "authweb:707SP-202AC-303A"]);
+$routes->post('mati/modal', 'Mati::modal', ["filter" => "authweb:707SP-202AC-303AL"]);
 $routes->post('mati/update', 'Mati::update', ["filter" => "authweb:707SP"]); 
 $routes->post('mati/delete', 'Mati::delete', ["filter" => "authweb:707SP"]); 
 
@@ -95,12 +95,12 @@ $routes->post('mati-import/import', 'MatiImport::import', ["filter" => "authweb:
 $routes->post('mati-import/save', 'MatiImport::save', ["filter" => "authweb:707SP"]);
 
 /*--- Pindah Data ---*/
-$routes->get('pindah', 'Pindah::index', ["filter" => "authweb:707SP-202AC-303A"]);
-$routes->post('pindah/filter', 'Pindah::filter', ["filter" => "authweb:707SP-202AC-303A"]);             
-$routes->post('pindah/list', 'Pindah::list', ["filter" => "authweb:707SP-202AC-303A"]); 
-$routes->post('pindah/fetch', 'Pindah::fetch', ["filter" => "authweb:707SP-202AC-303A"]);
+$routes->get('pindah', 'Pindah::index', ["filter" => "authweb:707SP-202AC-303AL"]);
+$routes->post('pindah/filter', 'Pindah::filter', ["filter" => "authweb:707SP-202AC-303AL"]);             
+$routes->post('pindah/list', 'Pindah::list', ["filter" => "authweb:707SP-202AC-303AL"]); 
+$routes->post('pindah/fetch', 'Pindah::fetch', ["filter" => "authweb:707SP-202AC-303AL"]);
 
-$routes->post('pindah/modal', 'Pindah::modal', ["filter" => "authweb:707SP-202AC-303A"]);
+$routes->post('pindah/modal', 'Pindah::modal', ["filter" => "authweb:707SP-202AC-303AL"]);
 $routes->post('pindah/update', 'Pindah::update', ["filter" => "authweb:707SP"]); 
 $routes->post('pindah/delete', 'Pindah::delete', ["filter" => "authweb:707SP"]); 
 
@@ -114,12 +114,12 @@ $routes->post('pindah-import/import', 'PindahImport::import', ["filter" => "auth
 $routes->post('pindah-import/save', 'PindahImport::save', ["filter" => "authweb:707SP"]);
 
 /*--- Datang Data ---*/
-$routes->get('datang', 'Datang::index', ["filter" => "authweb:707SP-202AC-303A"]);
-$routes->post('datang/filter', 'Datang::filter', ["filter" => "authweb:707SP-202AC-303A"]);             
-$routes->post('datang/list', 'Datang::list', ["filter" => "authweb:707SP-202AC-303A"]); 
-$routes->post('datang/fetch', 'Datang::fetch', ["filter" => "authweb:707SP-202AC-303A"]);
+$routes->get('datang', 'Datang::index', ["filter" => "authweb:707SP-202AC-303AL"]);
+$routes->post('datang/filter', 'Datang::filter', ["filter" => "authweb:707SP-202AC-303AL"]);             
+$routes->post('datang/list', 'Datang::list', ["filter" => "authweb:707SP-202AC-303AL"]); 
+$routes->post('datang/fetch', 'Datang::fetch', ["filter" => "authweb:707SP-202AC-303AL"]);
 
-$routes->post('datang/modal', 'Datang::modal', ["filter" => "authweb:707SP-202AC-303A"]);
+$routes->post('datang/modal', 'Datang::modal', ["filter" => "authweb:707SP-202AC-303AL"]);
 $routes->post('datang/update', 'Datang::update', ["filter" => "authweb:707SP"]); 
 $routes->post('datang/delete', 'Datang::delete', ["filter" => "authweb:707SP"]); 
 

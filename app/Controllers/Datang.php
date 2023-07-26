@@ -49,6 +49,13 @@ class Datang extends BaseController
         $list_kecamatan = $this->kecamatan->list();
         $list_kelurahan = $this->kelurahan->list();
 
+        $kec_select     = NULL;
+
+        if (session('role') == '303AL') {
+            $kec        = $this->kelurahan->find_kec(session('idcl'));
+            $kec_select = $kec->kec; 
+        }
+
         $data = [
             'title'         => 'Data Kedatangan',
             'modul'	        => $modul,
@@ -60,6 +67,7 @@ class Datang extends BaseController
             'list_tahun'    => $list_tahun,
             'list_kecamatan'=> $list_kecamatan,
             'list_kelurahan'=> $list_kelurahan,
+            'kec_select'    => $kec_select,
         ];
         return view('panel/datang/data/index', $data);
 	}
@@ -96,6 +104,15 @@ class Datang extends BaseController
         $tahun      = $this->request->getVar('tahun');
         $kecamatan  = $this->request->getVar('kecamatan');
         $kelurahan  = $this->request->getVar('kelurahan');
+
+        if (session('role') == '202AC') {
+            $kecamatan  = session('idcl');
+        }
+        if (session('role') == '303AL') {
+            $kelurahan  = session('idcl');
+            $kec        = $this->kelurahan->find_kec(session('idcl'));
+            $kecamatan = $kec->kec; 
+        }
 
         $queryParam = 'bulan=' . $bulan . '&tahun=' . $tahun . '&kecamatan=' . $kecamatan . '&kelurahan=' . $kelurahan;
 
@@ -163,6 +180,15 @@ class Datang extends BaseController
             $kecamatan  = $this->request->getVar('kecamatan');
             $kelurahan  = $this->request->getVar('kelurahan');
 
+            if (session('role') == '202AC') {
+                $kecamatan  = session('idcl');
+            }
+            if (session('role') == '303AL') {
+                $kelurahan  = session('idcl');
+                $kec        = $this->kelurahan->find_kec(session('idcl'));
+                $kecamatan = $kec->kec; 
+            }
+
             $lists 		= $this->datang->get_datatables($bulan, $tahun, $kecamatan, $kelurahan);
             $data 		= [];
             $no 		= $this->request->getPost('start');
@@ -189,8 +215,8 @@ class Datang extends BaseController
                 $row[] = $list->nama;
                 $row[] = $list->alamat;
 				$row[] = shortdate_indo($list->tgl_datang);
-                // $row[] = $list->kecamatan;
-                // $row[] = $list->kelurahan;
+                $row[] = $list->kecamatan;
+                $row[] = $list->kelurahan;
                 $row[] = $row_action;
 
                 $data[] = $row;
