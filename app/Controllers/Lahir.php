@@ -13,12 +13,14 @@ class Lahir extends BaseController
         $params         = [];
         parse_str($queryString, $params);
 
-        if (count($params) == 4 && array_key_exists('bulan', $params) && array_key_exists('tahun', $params) && array_key_exists('kecamatan', $params) && array_key_exists('kelurahan', $params)) {
+        if (count($params) == 6 && array_key_exists('bulan', $params) && array_key_exists('tahun', $params) && array_key_exists('kecamatan', $params) && array_key_exists('kelurahan', $params) && array_key_exists('bulanentri', $params) && array_key_exists('tahunentri', $params)) {
             $modul           = 'Filter';
             $bulan           = $params['bulan'];
             $tahun           = $params['tahun'];
             $kecamatan       = $params['kecamatan'];
             $kelurahan       = $params['kelurahan'];
+            $bulanentri      = $params['bulanentri'];
+            $tahunentri      = $params['tahunentri'];
 
             // $list_bulan      = $this->list_bulan('lahir');
             // $list_tahun      = $this->list_tahun('lahir');
@@ -38,6 +40,8 @@ class Lahir extends BaseController
             // }
         } else {
             $modul           = '';
+            $bulanentri      = NULL;
+            $tahunentri      = NULL;
             $bulan           = NULL;
             $tahun           = NULL;
             $kecamatan       = NULL;
@@ -46,6 +50,8 @@ class Lahir extends BaseController
 
         $list_bulan     = $this->list_bulan('lahir');
         $list_tahun     = $this->list_tahun('lahir');
+        $list_bulanentri= $this->list_bulan_entri_lahir();
+        $list_tahunentri= $this->list_tahun_entri_lahir();
         $list_kecamatan = $this->kecamatan->list();
         $list_kelurahan = $this->kelurahan->list();
 
@@ -57,17 +63,21 @@ class Lahir extends BaseController
         }
 
         $data = [
-            'title'         => 'Data Kelahiran',
-            'modul'	        => $modul,
-            'bulan'         => $bulan,
-            'tahun'         => $tahun,
-            'kecamatan'     => $kecamatan,
-            'kelurahan'     => $kelurahan,
-            'list_bulan'    => $list_bulan,
-            'list_tahun'    => $list_tahun,
-            'list_kecamatan'=> $list_kecamatan,
-            'list_kelurahan'=> $list_kelurahan,
-            'kec_select'    => $kec_select,
+            'title'          => 'Data Kelahiran',
+            'modul'	         => $modul,
+            'bulan'          => $bulan,
+            'tahun'          => $tahun,
+            'bulanentri'     => $bulanentri,
+            'tahunentri'     => $tahunentri,
+            'kecamatan'      => $kecamatan,
+            'kelurahan'      => $kelurahan,
+            'list_bulan'     => $list_bulan,
+            'list_tahun'     => $list_tahun,
+            'list_bulanentri'=> $list_bulanentri,
+            'list_tahunentri'=> $list_tahunentri,
+            'list_kecamatan' => $list_kecamatan,
+            'list_kelurahan' => $list_kelurahan,
+            'kec_select'     => $kec_select,
         ];
         return view('panel/lahir/data/index', $data);
 	}
@@ -102,6 +112,8 @@ class Lahir extends BaseController
     {
         $bulan      = $this->request->getVar('bulan'); 
         $tahun      = $this->request->getVar('tahun');
+        $bulanentri = $this->request->getVar('bulanentri'); 
+        $tahunentri = $this->request->getVar('tahunentri');
         $kecamatan  = $this->request->getVar('kecamatan');
         $kelurahan  = $this->request->getVar('kelurahan');
 
@@ -114,7 +126,7 @@ class Lahir extends BaseController
             $kecamatan = $kec->kec; 
         }
 
-        $queryParam = 'bulan=' . $bulan . '&tahun=' . $tahun . '&kecamatan=' . $kecamatan . '&kelurahan=' . $kelurahan;
+        $queryParam = 'bulan=' . $bulan . '&tahun=' . $tahun . '&bulanentri=' . $bulanentri . '&tahunentri=' . $tahunentri .  '&kecamatan=' . $kecamatan . '&kelurahan=' . $kelurahan;
 
         $newUrl = '/lahir?' . $queryParam; 
 
@@ -126,6 +138,8 @@ class Lahir extends BaseController
         if ($this->request->isAJAX()) {
             $bulan      = $this->request->getVar('bulan'); 
             $tahun      = $this->request->getVar('tahun');
+            $bulanentri = $this->request->getVar('bulanentri'); 
+            $tahunentri = $this->request->getVar('tahunentri');
             $kecamatan  = $this->request->getVar('kecamatan');
             $kelurahan  = $this->request->getVar('kelurahan');
 
@@ -141,6 +155,18 @@ class Lahir extends BaseController
                 $teks_tahun = 'TAHUN '.$tahun;
             }
 
+            if ($bulanentri == 'all') {
+                $teks_bulanentri = '';
+            }else {
+                $teks_bulanentri = 'BULAN '.$bulanentri;
+            }
+
+            if ($tahunentri == 'all') {
+                $teks_tahunentri = '';
+            }else {
+                $teks_tahunentri = 'TAHUN '.$tahunentri;
+            }
+
             if ($kecamatan == 'all') {
                 $teks_kecamatan = '';
             }else {
@@ -154,16 +180,20 @@ class Lahir extends BaseController
             }
 
             $data = [
-                'title'         => 'Data Kelahiran',
-                'modul'	        => 'Filter',
-                'bulan'         => $bulan,
-                'tahun'         => $tahun,
-                'kecamatan'     => $kecamatan,
-                'kelurahan'     => $kelurahan,
-                'teks_bulan'    => $teks_bulan,
-                'teks_tahun'    => $teks_tahun,
-                'teks_kecamatan'=> $teks_kecamatan,
-                'teks_kelurahan'=> $teks_kelurahan,
+                'title'             => 'Data Kelahiran',
+                'modul'	            => 'Filter',
+                'bulan'             => $bulan,
+                'tahun'             => $tahun,
+                'bulanentri'        => $bulanentri,
+                'tahunentri'        => $tahunentri,
+                'kecamatan'         => $kecamatan,
+                'kelurahan'         => $kelurahan,
+                'teks_bulan'        => $teks_bulan,
+                'teks_tahun'        => $teks_tahun,
+                'teks_bulanentri'   => $teks_bulanentri,
+                'teks_tahunentri'   => $teks_tahunentri,
+                'teks_kecamatan'    => $teks_kecamatan,
+                'teks_kelurahan'    => $teks_kelurahan,
             ];
             $msg = [
                 'data' => view('panel/lahir/data/list', $data)
@@ -177,6 +207,8 @@ class Lahir extends BaseController
         if ($this->request->isAJAX()) {
             $bulan      = $this->request->getVar('bulan'); 
             $tahun      = $this->request->getVar('tahun');
+            $bulanentri = $this->request->getVar('bulanentri'); 
+            $tahunentri = $this->request->getVar('tahunentri');
             $kecamatan  = $this->request->getVar('kecamatan');
             $kelurahan  = $this->request->getVar('kelurahan');
 
@@ -189,7 +221,7 @@ class Lahir extends BaseController
                 $kecamatan = $kec->kec; 
             }
 
-            $lists 		= $this->lahir->get_datatables($bulan, $tahun, $kecamatan, $kelurahan);
+            $lists 		= $this->lahir->get_datatables($bulan, $tahun, $bulanentri, $tahunentri, $kecamatan, $kelurahan);
             $data 		= [];
             $no 		= $this->request->getPost('start');
 
@@ -211,6 +243,7 @@ class Lahir extends BaseController
                 $row = [];
 
                 $row[] = $no;
+                $row[] = shortdate_indo($list->tgl_entri);
 				$row[] = $list->nik;
                 $row[] = $list->nama;
 				$row[] = shortdate_indo($list->tgl_lahir);

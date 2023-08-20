@@ -17,7 +17,7 @@ class Model_dt_Lahir extends Model
     protected $db;
     protected $dt;
 
-    function __construct(RequestInterface $request, $bulan = null,  $tahun = null, $kecamatan = null , $kelurahan = null)
+    function __construct(RequestInterface $request, $bulan = null,  $tahun = null, $bulanentri = null,  $tahunentri = null, $kecamatan = null , $kelurahan = null)
     {
         parent::__construct();
         $this->db = db_connect();
@@ -27,7 +27,7 @@ class Model_dt_Lahir extends Model
         ->select('*')
         ->orderBy('id', 'DESC');
     }
-    private function _get_datatables_query($bulan = null, $tahun = null, $kecamatan = null , $kelurahan = null)
+    private function _get_datatables_query($bulan = null, $tahun = null, $bulanentri = null,  $tahunentri = null, $kecamatan = null , $kelurahan = null)
     {
         $i = 0;
         foreach ($this->column_search as $item) {
@@ -50,6 +50,12 @@ class Model_dt_Lahir extends Model
         if ($tahun != 'all') {
             $this->dt->where('EXTRACT(YEAR FROM tgl_lahir)', $tahun);
         }
+        if ($bulanentri != 'all') {
+            $this->dt->where('EXTRACT(MONTH FROM tgl_entri)', $bulanentri);
+        }
+        if ($tahunentri != 'all') {
+            $this->dt->where('EXTRACT(YEAR FROM tgl_entri)', $tahunentri);
+        }
         if ($kecamatan != 'all') {
             $this->dt->where('kecamatan', $kecamatan);
         }
@@ -65,17 +71,17 @@ class Model_dt_Lahir extends Model
         }
     }
     
-    function get_datatables($bulan = null, $tahun = null, $kecamatan = null , $kelurahan = null)
+    function get_datatables($bulan = null, $tahun = null, $bulanentri = null,  $tahunentri = null, $kecamatan = null , $kelurahan = null)
     {
-        $this->_get_datatables_query($bulan, $tahun, $kecamatan, $kelurahan);
+        $this->_get_datatables_query($bulan, $tahun, $bulanentri, $tahunentri, $kecamatan, $kelurahan);
         if (isset($_POST['length' != -1]))
             $this->dt->limit($_POST['length'], $_POST['start']);
         $query = $this->dt->get();
         return $query->getResult();
     }
-    function count_filtered($bulan = null, $tahun = null, $kecamatan = null , $kelurahan = null)
+    function count_filtered($bulan = null, $tahun = null, $bulanentri = null,  $tahunentri = null, $kecamatan = null , $kelurahan = null)
     {
-        $this->_get_datatables_query($bulan, $tahun, $kecamatan, $kelurahan);
+        $this->_get_datatables_query($bulan, $tahun, $bulanentri, $tahunentri, $kecamatan, $kelurahan);
         return $this->dt->countAllResults();
     }
     public function count_all()

@@ -13,7 +13,7 @@
                         <form method="POST" action="<?= base_url('/lahir-laporan/export') ?>">
                           <div class="row mb-3">
                             <div class="col">
-                              <label for="tahun">TAHUN<code>*</code></label>
+                              <label for="tahun">TAHUN LAHIR<code>*</code></label>
                               <select class="form-control" name="tahun" id="tahun" required>
                                   <option value="" selected> PILIH TAHUN... </option>
                                   <?php foreach ($list_tahun as $key => $data) { ?>

@@ -72,7 +72,7 @@ class BaseController extends Controller
 	public function list_bulan($modul){
 		$tb = 'tb_data_'.$modul;
 		$column = 'tgl_'.$modul;
-		$query_month = $this->db->query("SELECT DISTINCT EXTRACT(MONTH FROM $tb.$column) AS month_number, DATE_FORMAT($tb.$column, '%M') AS month_name FROM $tb");
+		$query_month = $this->db->query("SELECT DISTINCT EXTRACT(MONTH FROM $tb.$column) AS month_number, DATE_FORMAT($tb.$column, '%M') AS month_name FROM $tb ORDER BY month_number ASC");
 		$unique_month = $query_month->getResultArray();
 		return $unique_month;
 	}
@@ -80,7 +80,23 @@ class BaseController extends Controller
 	public function list_tahun($modul){
 		$tb = 'tb_data_'.$modul;
 		$column = 'tgl_'.$modul;
-		$query_year = $this->db->query("SELECT DISTINCT EXTRACT(YEAR FROM $tb.$column) AS year FROM $tb");
+		$query_year = $this->db->query("SELECT DISTINCT EXTRACT(YEAR FROM $tb.$column) AS year FROM $tb ORDER BY year DESC");
+		$unique_year = $query_year->getResultArray();
+		return $unique_year;
+	}
+
+	public function list_bulan_entri_lahir(){
+		$tb = 'tb_data_lahir';
+		$column = 'tgl_entri';
+		$query_month = $this->db->query("SELECT DISTINCT EXTRACT(MONTH FROM $tb.$column) AS month_number, DATE_FORMAT($tb.$column, '%M') AS month_name FROM $tb ORDER BY month_number ASC");
+		$unique_month = $query_month->getResultArray();
+		return $unique_month;
+	}
+
+	public function list_tahun_entri_lahir(){
+		$tb = 'tb_data_lahir';
+		$column = 'tgl_entri';
+		$query_year = $this->db->query("SELECT DISTINCT EXTRACT(YEAR FROM $tb.$column) AS year FROM $tb ORDER BY year DESC");
 		$unique_year = $query_year->getResultArray();
 		return $unique_year;
 	}

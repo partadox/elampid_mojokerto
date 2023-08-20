@@ -1,18 +1,20 @@
 <h4 class="text-center">DATA KELAHIRAN</h4>
 <h5 class="text-center"><?= $teks_kecamatan ?> <?= $teks_kelurahan ?></h5>
-<h5 class="text-center"><?= $teks_bulan ?> <?= $teks_tahun ?></h5>
+<h5 class="text-center"><?php if($teks_bulan != NULL || $teks_tahun != NULL) { ?>LAHIR <?php } ?> <?= $teks_bulan ?> <?= $teks_tahun ?></h5>
+<h5 class="text-center"><?php if($teks_bulanentri != NULL || $teks_tahunentri != NULL) { ?>ENTRI DATA <?php } ?> <?= $teks_bulanentri ?> <?= $teks_tahunentri ?></h5>
 <div class="table-responsive mb-3">
   <table id="list" class="table table-striped table-bordered dt-responsive wrap w-100 ">
     <thead>
         <tr class="table-secondary">
             <th width=2%>NO</th>
+            <th width=11%>TGL ENTRI</th>
             <th width=15%>NIK</th>
             <th width=15%>NAMA</th>
-            <th width=15%>TGL LAHIR</th>
+            <th width=11%>TGL LAHIR</th>
             <th width=15%>AKTA LAHIR</th>
             <th width=9%>KEC.</th>
             <th width=9%>KEL.</th>
-            <th width=8%></th>
+            <th width=10%></th>
         </tr>
     </thead>
     <tbody>
@@ -21,7 +23,7 @@
 </div>
 
 <script>
-    function fetch(bulan, tahun, kecamatan, kelurahan) {
+    function fetch(bulan, tahun, bulanentri, tahunentri, kecamatan, kelurahan) {
         var table = $('#list').DataTable({
             "processing": true,
             "serverside": true,
@@ -32,6 +34,8 @@
                 "data": {
                     bulan: bulan,
                     tahun: tahun,
+                    bulanentri: bulanentri,
+                    tahunentri: tahunentri,
                     kecamatan: kecamatan,
                     kelurahan: kelurahan
                 },
@@ -77,7 +81,7 @@
 
     $(document).ready(function () {
         $('.select2').select2({});
-        fetch('<?= $bulan ?>', '<?= $tahun ?>', '<?= $kecamatan ?>', '<?= $kelurahan ?>');
+        fetch('<?= $bulan ?>', '<?= $tahun ?>', '<?= $bulanentri ?>', '<?= $tahunentri ?>', '<?= $kecamatan ?>', '<?= $kelurahan ?>');
     });
 
     function info(id) {

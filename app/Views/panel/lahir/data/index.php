@@ -12,6 +12,24 @@
                         <h4 class="card-title mb-3">DATA KELAHIRAN KOTA MOJOKERTO</h4>
                         <form method="POST" action="<?= base_url('/lahir/filter') ?>">
                           <div class="row mb-3">
+                          <div class="col">
+                              <label for="bulanentri">BULAN ENTRI<code>*</code></label>
+                              <select class="form-control" name="bulanentri" id="bulanentri" >
+                                    <option value="all" <?php if ($bulanentri == 'all') echo "selected"; ?> > SEMUA </option>
+                                  <?php foreach ($list_bulanentri as $data) { ?>
+                                    <option value="<?= $data['month_number'] ?>" <?php if ($data['month_number'] == $bulanentri) echo "selected"; ?> > <?= strtoupper($data['month_name']) ?> </option>
+                                  <?php } ?>
+                              </select>
+                            </div>
+                            <div class="col">
+                              <label for="tahunentri">TAHUN ENTRI<code>*</code></label>
+                              <select class="form-control" name="tahunentri" id="tahunentri">
+                                  <option value="all" <?php if ($tahunentri == 'all') echo "selected"; ?> > SEMUA </option>
+                                  <?php foreach ($list_tahunentri as $key => $data) { ?>
+                                  <option value="<?= $data['year'] ?>" <?php if ($data['year'] == $tahunentri) echo "selected"; ?> > <?= $data['year'] ?> </option>
+                                  <?php } ?>
+                              </select>
+                            </div>
                             <div class="col">
                               <label for="bulan">BULAN LAHIR<code>*</code></label>
                               <select class="form-control" name="bulan" id="bulan" >
@@ -158,13 +176,15 @@
 
 <?php if($modul == 'Filter') { ?>
   <script>
-    function list(bulan, tahun, kecamatan, kelurahan) {
+    function list(bulan, tahun, bulanentri, tahunentri, kecamatan, kelurahan) {
         $.ajax({
             url: "<?= base_url('/lahir/list') ?>",
             type: "POST", // or GET, depending on what your server expects
             data: {
               bulan: bulan,
               tahun: tahun,
+              bulanentri: bulanentri,
+              tahunentri: tahunentri,
               kecamatan: kecamatan,
               kelurahan: kelurahan
             },
@@ -176,7 +196,7 @@
     }
 
     $(document).ready(function() {
-        list('<?= $bulan ?>', '<?= $tahun ?>', '<?= $kecamatan ?>', '<?= $kelurahan ?>');
+        list('<?= $bulan ?>', '<?= $tahun ?>', '<?= $bulanentri ?>', '<?= $tahunentri ?>', '<?= $kecamatan ?>', '<?= $kelurahan ?>');
         // $('.select2').select2({
         //     minimumResultsForSearch: Infinity
         // });

@@ -137,19 +137,34 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
             success: function(response) {
-                // Show SweetAlert 2 with the success message
-                Swal.fire({
-                    icon: 'success',
-                    title: 'BERHASIL',
-                    text: response.message,
-                    allowOutsideClick: false,
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Redirect to the specified URL
-                        window.location.href = response.redirect;
-                    }
-                });
+                if (response.success == true) {
+                    // Show SweetAlert 2 with the success message
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: response.message,
+                        allowOutsideClick: false,
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = response.redirect;
+                        }
+                    });
+                } 
+                if(response.success == false) {
+                    // Show SweetAlert 2 with the error message
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Peringatan',
+                        text: response.message,
+                        allowOutsideClick: false,
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = response.redirect;
+                        }
+                    });
+                }
             },
             error: function(response) {
                 // Show SweetAlert 2 with the error message
@@ -158,6 +173,10 @@ $(document).ready(function() {
                     title: 'Error',
                     text: 'Terjadi Error Dalam Proses Simpan Data.',
                     confirmButtonText: 'OK'
+                }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '/lahir-import';
+                        }
                 });
             }
         });

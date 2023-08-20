@@ -43,8 +43,13 @@ class LahirImport extends BaseController
 
     public function save()
     {
+        $this->db->transBegin();
+
         $requestData = $this->request->getPost('data');
         $data = json_decode($requestData, true);
+
+        $errors = [];
+
         foreach ($data as $row) {
             $tgl_entri      = $row['column_1'];
             $kecamatan      = $row['column_2'];
@@ -57,7 +62,8 @@ class LahirImport extends BaseController
             $tgl_lahir      = $row['column_9'];
             $kelamin        = $row['column_10'];
             $kategori       = $row['column_11'];
-            $this->lahir->insert([
+
+            $store = $this->lahir->insert([
                 'tgl_entri'     => $tgl_entri,
                 'kecamatan'     => strtoupper($kecamatan),
                 'kelurahan'     => strtoupper($kelurahan),
@@ -71,13 +77,30 @@ class LahirImport extends BaseController
                 'kategori'      => str_replace(' ', '', strtoupper($kategori)),
                 'created'       => date('Y-m-d H:i:s')
             ]);
+
+            if ($store === false) {
+                $errors[] = $row['column_0'] . ', ';
+            }
         }
-        $response = [
-            'success' => true,
-            'code'    => '200',
-            'message' => 'Data Berhasil Diimport Berjumlah '.count($data),
-            'redirect' => '/lahir-import'
-        ];
+        
+        if (!empty($errors)) {
+            $this->db->transRollback();
+            $response = [
+                'success' => false,
+                'code'    => '400',
+                'message' => 'File Gagal Diimport, Error pada Baris: '.$errors,
+                'redirect' => '/lahir-import'
+            ];
+        } else {
+            $this->db->transCommit();
+            $response = [
+                'success' => true,
+                'code'    => '200',
+                'message' => 'Data Berhasil Diimport Berjumlah ' . count($data),
+                'redirect' => '/lahir-import'
+            ];
+        }
+        
         return $this->response->setJSON($response);
     }
 }
