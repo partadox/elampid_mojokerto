@@ -28,7 +28,7 @@ class LahirLaporan extends BaseController
             for ($i=1; $i <= 12 ; $i++) { 
                 $kc = $kec['idc'];
                 $as = 'C-'.strtolower($kec['idc']).'-'.$i;
-                $query   = $this->db->query("SELECT COUNT(*) AS '$as' FROM tb_data_lahir WHERE EXTRACT(YEAR FROM tgl_lahir) = $tahun AND EXTRACT(MONTH FROM tgl_lahir) = $i AND kecamatan = '$kc'");
+                $query   = $this->db->query("SELECT COUNT(*) AS '$as' FROM tb_data_lahir WHERE EXTRACT(YEAR FROM tgl_entri) = $tahun AND EXTRACT(MONTH FROM tgl_entri) = $i AND kecamatan = '$kc'");
                 $hasilT1[]      = $query->getResultArray();
             }
         }
@@ -36,7 +36,7 @@ class LahirLaporan extends BaseController
             for ($i=1; $i <= 12 ; $i++) { 
                 $kl = $kel['idl'];
                 $as = 'L-'.strtolower($kel['idl']).'-'.$i;
-                $query   = $this->db->query("SELECT COUNT(*) AS '$as' FROM tb_data_lahir WHERE EXTRACT(YEAR FROM tgl_lahir) = $tahun AND EXTRACT(MONTH FROM tgl_lahir) = $i AND kelurahan = '$kl' AND kelamin = 'LAKI-LAKI'");
+                $query   = $this->db->query("SELECT COUNT(*) AS '$as' FROM tb_data_lahir WHERE EXTRACT(YEAR FROM tgl_entri) = $tahun AND EXTRACT(MONTH FROM tgl_entri) = $i AND kelurahan = '$kl' AND kelamin = 'LAKI-LAKI'");
                 $hasilT2L[]      = $query->getResultArray();
             }
         }
@@ -44,7 +44,7 @@ class LahirLaporan extends BaseController
             for ($i=1; $i <= 12 ; $i++) { 
                 $kl = $kel['idl'];
                 $as = 'P-'.strtolower($kel['idl']).'-'.$i;
-                $query   = $this->db->query("SELECT COUNT(*) AS '$as' FROM tb_data_lahir WHERE EXTRACT(YEAR FROM tgl_lahir) = $tahun AND EXTRACT(MONTH FROM tgl_lahir) = $i AND kelurahan = '$kl' AND kelamin = 'PEREMPUAN'");
+                $query   = $this->db->query("SELECT COUNT(*) AS '$as' FROM tb_data_lahir WHERE EXTRACT(YEAR FROM tgl_entri) = $tahun AND EXTRACT(MONTH FROM tgl_entri) = $i AND kelurahan = '$kl' AND kelamin = 'PEREMPUAN'");
                 $hasilT2P[]      = $query->getResultArray();
             }
         }
@@ -52,7 +52,7 @@ class LahirLaporan extends BaseController
             for ($i=1; $i <= 12 ; $i++) { 
                 $kl = $kel['idl'];
                 $as = 'LT-'.strtolower($kel['idl']).'-'.$i;
-                $query   = $this->db->query("SELECT COUNT(*) AS '$as' FROM tb_data_lahir WHERE EXTRACT(YEAR FROM tgl_lahir) = $tahun AND EXTRACT(MONTH FROM tgl_lahir) = $i AND kelurahan = '$kl' AND kategori = 'LT'");
+                $query   = $this->db->query("SELECT COUNT(*) AS '$as' FROM tb_data_lahir WHERE EXTRACT(YEAR FROM tgl_entri) = $tahun AND EXTRACT(MONTH FROM tgl_entri) = $i AND kelurahan = '$kl' AND kategori = 'LT'");
                 $hasilT3LT[]      = $query->getResultArray();
             }
         }
@@ -60,7 +60,7 @@ class LahirLaporan extends BaseController
             for ($i=1; $i <= 12 ; $i++) { 
                 $kl = $kel['idl'];
                 $as = 'LU-'.strtolower($kel['idl']).'-'.$i;
-                $query   = $this->db->query("SELECT COUNT(*) AS '$as' FROM tb_data_lahir WHERE EXTRACT(YEAR FROM tgl_lahir) = $tahun AND EXTRACT(MONTH FROM tgl_lahir) = $i AND kelurahan = '$kl' AND kategori = 'LU'");
+                $query   = $this->db->query("SELECT COUNT(*) AS '$as' FROM tb_data_lahir WHERE EXTRACT(YEAR FROM tgl_entri) = $tahun AND EXTRACT(MONTH FROM tgl_entri) = $i AND kelurahan = '$kl' AND kategori = 'LU'");
                 $hasilT3LU[]      = $query->getResultArray();
             }
         }

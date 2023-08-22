@@ -26,9 +26,12 @@
                 <div class="form-group">
                     <label>Password <code>*</code></label> <br>
                     <code>Password Kombinsasi dari huruf kecil, huruf kapital, angka, simbol dan minimal 8 karakter</code> <br>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                    <div class="invalid-feedback errorPass">
+                    <div class="input-group auth-pass-inputgroup">
+                        <input type="password" class="form-control" id="password" name="password" aria-label="Password" aria-describedby="password-addon" autocomplete="false">
+                        <button class="btn btn-light " type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                        <div class="invalid-feedback errorPass"></div>
                     </div>
+                    
                 </div>
 
                 <div class="form-group">
@@ -76,6 +79,8 @@
         </div>
     </div>
 </div>
+<!-- App js -->
+<script src="<?= base_url()?>/public/assets/js/app.js"></script>
 <script>
     document.getElementById("role").onchange = function() {
         let selector = document.getElementById('role');
