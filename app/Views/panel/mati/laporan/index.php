@@ -13,7 +13,7 @@
                         <form method="POST" action="<?= base_url('/mati-laporan/export') ?>">
                           <div class="row mb-3">
                             <div class="col">
-                              <label for="tahun">TAHUN AJU<code>*</code></label>
+                              <label for="tahun">TAHUN PENGAJUAN<code>*</code></label>
                               <select class="form-control" name="tahun" id="tahun" required>
                                   <option value="" selected> PILIH TAHUN... </option>
                                   <?php foreach ($list_tahun as $key => $data) { ?>
