@@ -89,4 +89,47 @@ class Model_dt_Lahir extends Model
         $tbl_storage = $this->db->table($this->table);
         return $tbl_storage->countAllResults();
     }
+
+    public function total_tahun($year)
+    {
+        return $this->table('tb_data_lahir')
+        ->where('YEAR(tgl_entri)', $year)
+        ->countAllResults();
+    }
+
+    public function total()
+    {
+        return $this->table('tb_data_lahir')
+        ->countAllResults();
+    }
+
+    public function total_kec_tahun($year, $kec)
+    {
+        return $this->table('tb_data_lahir')
+        ->where('YEAR(tgl_entri)', $year)
+        ->where('kecamatan', $kec)
+        ->countAllResults();
+    }
+
+    public function total_kec($kec)
+    {
+        return $this->table('tb_data_lahir')
+        ->where('kecamatan', $kec)
+        ->countAllResults();
+    }
+
+    public function total_kel_tahun($year, $kel)
+    {
+        return $this->table('tb_data_lahir')
+        ->where('YEAR(tgl_entri)', $year)
+        ->where('kelurahan', $kel)
+        ->countAllResults();
+    }
+
+    public function total_kel($kel)
+    {
+        return $this->table('tb_data_lahir')
+        ->where('kelurahan', $kel)
+        ->countAllResults();
+    }
 }

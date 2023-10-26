@@ -4,18 +4,14 @@
     <div class="page-content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xl-4">
+                <div class="col">
                     <div class="card overflow-hidden">
                         <div class="bg-warning bg-soft">
                             <div class="row">
                                 <div class="col-7">
-                                    <div class="text-success p-3">
-                                        <h5 class="text-success">Selamat Datang</h5>
-                                        <p>e-Lampid - Dashboard</p>
+                                    <div class="text-success text-cemter p-3">
+                                        <h1 class="text-success">Selamat Datang di Sistem e-Lampid <?= ucwords($banner) ?></h1>
                                     </div>
-                                </div>
-                                <div class="col-5 align-self-end">
-                                    <img src="<?= base_url() ?>/public/assets/images/profile-img-ori.png" alt="" class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -47,6 +43,71 @@
                 </div> -->
             </div>
             <!-- end row -->
+            <div class="row">
+                <div class="col-xl-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-4 card-title">
+                                Data Kelahiran
+                            </div>
+                            <div class="text-center">
+                                <div class="mb-4"><i class="bx bx-file text-warning display-4"></i></div>
+                                <h3><?= $Ylahir ?> / <?= $Tlahir ?></h3>
+                                <h5>Tahun <?= date('Y') ?> / Total</h5>
+                                <p><i>(by tanggal input)</i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-4 card-title">
+                                Data Kematian
+                            </div>
+                            <div class="text-center">
+                                <div class="mb-4"><i class="bx bx-file text-warning display-4"></i></div>
+                                <h3><?= $Ymati ?> / <?= $Tmati ?></h3>
+                                <h5>Tahun <?= date('Y') ?> / Total</h5>
+                                <p><i>(by tanggal input)</i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-4 card-title">
+                                Data Pindah
+                            </div>
+                            <div class="text-center">
+                                <div class="mb-4"><i class="bx bx-file text-warning display-4"></i></div>
+                                <h3><?= $Ypindah ?> / <?= $Tpindah ?></h3>
+                                <h5>Tahun <?= date('Y') ?> / Total</h5>
+                                <p><i>(by tanggal input)</i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-4 card-title">
+                                Data Datang
+                            </div>
+                            <div class="text-center">
+                                <div class="mb-4"><i class="bx bx-file text-warning display-4"></i></div>
+                                <h3><?= $Ydatang ?> / <?= $Tdatang ?></h3>
+                                <h5>Tahun <?= date('Y') ?> / Total</h5>
+                                <p><i>(by tanggal input)</i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- container-fluid -->
     </div>

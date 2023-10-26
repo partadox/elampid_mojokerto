@@ -83,4 +83,47 @@ class Model_dt_Mati extends Model
         $tbl_storage = $this->db->table($this->table);
         return $tbl_storage->countAllResults();
     }
+
+    public function total_tahun($year)
+    {
+        return $this->table('tb_data_mati')
+        ->where('YEAR(tgl_aju)', $year)
+        ->countAllResults();
+    }
+
+    public function total()
+    {
+        return $this->table('tb_data_mati')
+        ->countAllResults();
+    }
+
+    public function total_kec_tahun($year, $kec)
+    {
+        return $this->table('tb_data_mati')
+        ->where('YEAR(tgl_aju)', $year)
+        ->where('kecamatan', $kec)
+        ->countAllResults();
+    }
+
+    public function total_kec($kec)
+    {
+        return $this->table('tb_data_mati')
+        ->where('kecamatan', $kec)
+        ->countAllResults();
+    }
+
+    public function total_kel_tahun($year, $kel)
+    {
+        return $this->table('tb_data_mati')
+        ->where('YEAR(tgl_aju)', $year)
+        ->where('kelurahan', $kel)
+        ->countAllResults();
+    }
+
+    public function total_kel($kel)
+    {
+        return $this->table('tb_data_mati')
+        ->where('kelurahan', $kel)
+        ->countAllResults();
+    }
 }
