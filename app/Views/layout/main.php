@@ -53,6 +53,9 @@
     <!-- Date Picker Booststrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- tui charts Css -->
+    <link href="<?= base_url() ?>/public/assets/libs/tui-chart/tui-chart.min.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body data-sidebar="dark">

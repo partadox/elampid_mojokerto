@@ -53,6 +53,7 @@ $routes->post('dologin', 'Auth::dologin');
 
 /*--- Dashboard ---*/
 $routes->get('dashboard', 'Dashboard::index', ["filter" => "authweb:707SP-202AC-303AL"]); 
+$routes->post('dashboard/filter', 'Dashboard::filter', ["filter" => "authweb:707SP-202AC-303AL"]); 
 
 
 /*--- Lahir Data ---*/

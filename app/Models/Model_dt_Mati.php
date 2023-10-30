@@ -87,7 +87,7 @@ class Model_dt_Mati extends Model
     public function total_tahun($year)
     {
         return $this->table('tb_data_mati')
-        ->where('YEAR(tgl_aju)', $year)
+        ->where('YEAR(tgl_mati)', $year)
         ->countAllResults();
     }
 
@@ -100,7 +100,7 @@ class Model_dt_Mati extends Model
     public function total_kec_tahun($year, $kec)
     {
         return $this->table('tb_data_mati')
-        ->where('YEAR(tgl_aju)', $year)
+        ->where('YEAR(tgl_mati)', $year)
         ->where('kecamatan', $kec)
         ->countAllResults();
     }
@@ -115,7 +115,7 @@ class Model_dt_Mati extends Model
     public function total_kel_tahun($year, $kel)
     {
         return $this->table('tb_data_mati')
-        ->where('YEAR(tgl_aju)', $year)
+        ->where('YEAR(tgl_mati)', $year)
         ->where('kelurahan', $kel)
         ->countAllResults();
     }
@@ -125,5 +125,26 @@ class Model_dt_Mati extends Model
         return $this->table('tb_data_mati')
         ->where('kelurahan', $kel)
         ->countAllResults();
+    }
+
+    //Dashboard - Grafik
+    public function chart_mati($tahun, $month, $kec, $kelamin)
+    {
+        return $this->table('tb_data_mati')
+            ->where('YEAR(tgl_mati)', $tahun)
+            ->where('MONTH(tgl_mati)', $month)
+            ->where('kecamatan', $kec)
+            ->where('kelamin', $kelamin)
+            ->countAllResults();
+    }
+
+    public function chart_kel_mati($tahun, $month, $kel, $kelamin)
+    {
+        return $this->table('tb_data_mati')
+            ->where('YEAR(tgl_mati)', $tahun)
+            ->where('MONTH(tgl_mati)', $month)
+            ->where('kelurahan', $kel)
+            ->where('kelamin', $kelamin)
+            ->countAllResults();
     }
 }
