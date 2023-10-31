@@ -93,7 +93,7 @@ class Model_dt_Lahir extends Model
     public function total_tahun($year)
     {
         return $this->table('tb_data_lahir')
-        ->where('YEAR(tgl_lahir)', $year)
+        ->where('YEAR(tgl_entri)', $year)
         ->countAllResults();
     }
 
@@ -106,7 +106,7 @@ class Model_dt_Lahir extends Model
     public function total_kec_tahun($year, $kec)
     {
         return $this->table('tb_data_lahir')
-        ->where('YEAR(tgl_lahir)', $year)
+        ->where('YEAR(tgl_entri)', $year)
         ->where('kecamatan', $kec)
         ->countAllResults();
     }
@@ -121,7 +121,7 @@ class Model_dt_Lahir extends Model
     public function total_kel_tahun($year, $kel)
     {
         return $this->table('tb_data_lahir')
-        ->where('YEAR(tgl_lahir)', $year)
+        ->where('YEAR(tgl_entri)', $year)
         ->where('kelurahan', $kel)
         ->countAllResults();
     }
@@ -137,8 +137,8 @@ class Model_dt_Lahir extends Model
     public function chart_lahir($tahun, $month, $kec, $kelamin)
     {
         return $this->table('tb_data_lahir')
-            ->where('YEAR(tgl_lahir)', $tahun)
-            ->where('MONTH(tgl_lahir)', $month)
+            ->where('YEAR(tgl_entri)', $tahun)
+            ->where('MONTH(tgl_entri)', $month)
             ->where('kecamatan', $kec)
             ->where('kelamin', $kelamin)
             ->countAllResults();
@@ -147,8 +147,8 @@ class Model_dt_Lahir extends Model
     public function chart_kel_lahir($tahun, $month, $kel, $kelamin)
     {
         return $this->table('tb_data_lahir')
-            ->where('YEAR(tgl_lahir)', $tahun)
-            ->where('MONTH(tgl_lahir)', $month)
+            ->where('YEAR(tgl_entri)', $tahun)
+            ->where('MONTH(tgl_entri)', $month)
             ->where('kelurahan', $kel)
             ->where('kelamin', $kelamin)
             ->countAllResults();

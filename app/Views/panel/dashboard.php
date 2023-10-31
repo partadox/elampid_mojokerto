@@ -103,7 +103,7 @@
                         <div class="card-body">
                             <div class="d-flex">
                                 <div class="flex-grow-1">
-                                    <p class="text-center fw-medium">Data Kelahiran <button type="button" class="btn btn-link waves-effect" data-bs-toggle="tooltip" data-bs-placement="top" title="Berdasarkan Tahun Lahir">
+                                    <p class="text-center fw-medium">Data Kelahiran <button type="button" class="btn btn-link waves-effect" data-bs-toggle="tooltip" data-bs-placement="top" title="Berdasarkan Tahun Entri">
                                         <i class="bx bxs-info-circle"></i>
                                     </button></p>
                                     
@@ -128,7 +128,7 @@
                         <div class="card-body">
                             <div class="d-flex">
                                 <div class="flex-grow-1">
-                                    <p class="text-center fw-medium">Data Kematian <button type="button" class="btn btn-link waves-effect" data-bs-toggle="tooltip" data-bs-placement="top" title="Berdasarkan Tahun Mati">
+                                    <p class="text-center fw-medium">Data Kematian <button type="button" class="btn btn-link waves-effect" data-bs-toggle="tooltip" data-bs-placement="top" title="Berdasarkan Tahun Entri">
                                         <i class="bx bxs-info-circle"></i>
                                     </button></p>
                                     <h4 class="mb-0 text-center"><?= $Ymati ?> / <?= $Tmati ?></h4>
@@ -283,18 +283,23 @@
         // Function to create a TUI Chart
         function createTuiChart(containerId, chartData, chartOptions) {
             var chartContainer = document.getElementById(containerId);
-            var chartWidth = chartContainer.offsetWidth;
 
-            chartOptions.chart.width = chartWidth;
+            // Function to set chart width based on screen width
+            function setChartWidth() {
+                var chartWidth = window.innerWidth >= 768 ? 1100 : chartContainer.offsetWidth;
+                chartOptions.chart.width = chartWidth;
+            }
+
+            setChartWidth();
 
             // Create the TUI Chart instance
             var chart = tui.chart.columnChart(chartContainer, chartData, chartOptions);
 
             // Handle chart resize on window resize
-            $(window).resize(function () {
-                var newChartWidth = $("#" + containerId).width();
+            window.addEventListener('resize', function () {
+                setChartWidth();
                 chart.resize({
-                    width: newChartWidth,
+                    width: chartOptions.chart.width,
                     height: 380
                 });
             });
@@ -399,32 +404,11 @@
 
         // Create Mati Chart
         var matiChart = createTuiChart('mati-charts', matiChartData, matiChartOptions);
-        matiChart.on('load', function () {
-            // Set the chart width to 1100 when it's loaded
-            matiChart.resize({
-                width: 1100,
-                height: 380
-            });
-        });
 
         // Create Datang Chart
         var datangChart = createTuiChart('datang-charts', datangChartData, datangChartOptions);
-        datangChart.on('load', function () {
-            // Set the chart width to 1100 when it's loaded
-            datangChart.resize({
-                width: 1100,
-                height: 380
-            });
-        });
 
         // Create Pindah Chart
         var pindahChart = createTuiChart('pindah-charts', pindahChartData, pindahChartOptions);
-        pindahChart.on('load', function () {
-            // Set the chart width to 1100 when it's loaded
-            pindahChart.resize({
-                width: 1100,
-                height: 380
-            });
-        });
     </script>
 <?= $this->endSection('isi') ?>
