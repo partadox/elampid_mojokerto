@@ -1448,9 +1448,9 @@ class LahirLaporan extends BaseController
 
         $filename =  'DATA KELAHIRAN KOTA MOJOKERTO TAHUN '.$tahun.' - DIUNDUH TGL '. date('Y-m-d');
         if ($extension == 'xlsx') {
-            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xls($spreadsheet);
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-            header('Content-Disposition: attachment;filename=' . $filename . '.xlsx');
+            header('Content-Disposition: attachment;filename=' . $filename . '.xls');
             header('Cache-Control: max-age=0');
             $writer->save('php://output');
         }elseif ($extension == 'pdf') {
