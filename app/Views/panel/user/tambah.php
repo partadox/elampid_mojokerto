@@ -9,17 +9,20 @@
             <?= form_open('/user/simpan', ['class' => 'formtambah']) ?>
             <?= csrf_field(); ?>
             <div class="modal-body">
-                <div class="form-group">
-                    <label>Username <code>*</code> </label>
-                    <input type="text" class="form-control" id="username" name="username" required>
-                    <div class="invalid-feedback errorUser">
-                    </div>
-                </div>
 
                 <div class="form-group">
                     <label>Nama <code>*</code> </label>
                     <input type="text" class="form-control" id="nama" name="nama" required>
                     <div class="invalid-feedback errorNama">
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                    <label>Username <code>*</code> </label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                    <div class="invalid-feedback errorUser">
                     </div>
                 </div>
 
@@ -38,7 +41,8 @@
                     <label>Role <code>*</code></label>
                     <select class="form-control" name="role" id="role" required>
                         <option value="" selected disabled> PILIH... </option>
-                        <option value="707SP" > USER DINAS </option>
+                        <option value="707SP" > USER DISPENDUKCAPIL</option>
+                        <option value="101DL" > USER DINAS LAIN</option>
                         <option value="202AC" > USER KECAMATAN </option>
                         <option value="303AL" > USER KELURAHAN </option>
                     </select>

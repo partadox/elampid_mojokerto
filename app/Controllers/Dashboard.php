@@ -53,7 +53,7 @@ class Dashboard extends BaseController
 			}
 		}
 
-		if (session('role') == '707SP') {
+		if (session('role') == '707SP' || session('role') == '101DL') {
             $banner = 'Kota Mojokerto'; 
 			$Ylahir = $this->lahir->total_tahun($tahun);
 			$Tlahir = $this->lahir->total();

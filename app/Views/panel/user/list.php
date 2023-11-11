@@ -21,7 +21,7 @@
                 <td>
                     <?php if ($data['role'] == '707SP') { ?>
                         <h6>
-                            <span class="badge bg-success">DINAS</span>
+                            <span class="badge bg-success">USER DISPENDUKCAPIL</span>
                         </h6>
                     <?php } elseif ($data['role'] == '202AC') { ?>
                         <h6>
@@ -30,6 +30,10 @@
                     <?php } elseif ($data['role'] == '303AL') { ?>
                         <h6>
                             <span class="badge bg-warning">USER KELURAHAN</span>
+                        </h6> <strong><?= $data['idcl'] ?></strong>
+                    <?php } elseif ($data['role'] == '101DL') { ?>
+                        <h6>
+                            <span class="badge bg-secondary">USER DINAS LAIN</span>
                         </h6> <strong><?= $data['idcl'] ?></strong>
                     <?php } ?>
                 </td>

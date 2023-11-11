@@ -98,7 +98,7 @@
         });
     }
 
-    <?php if(session('role') == '707SP') { ?>
+    <?php if(session('role') == '707SP' || session('role') == '101DL') { ?>
 
     function edit(id) {
         $.ajax({

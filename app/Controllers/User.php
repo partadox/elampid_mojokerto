@@ -107,16 +107,25 @@ class User extends BaseController
                     $uid_code  = 'L';
                     $idcl      = $kelurahan;
                     $rlcode    = '303AL';
+                } elseif ($this->request->getVar('role') == "101DL") {
+                    $uid_code  = 'D';
+                    $idcl      = '';
+                    $rlcode    = '101DL';
                 } elseif ($this->request->getVar('role') == "707SP") {
                     $uid_code  = 'S';
                     $idcl      = '';
                     $rlcode    = '707SP';
                 }
                 $last_user= $this->user->where('role', $rlcode)->orderBy('uid', 'desc')->first();
-                $last_num = substr($last_user['uid'], -4); // get last 4 char
-                $num      = $last_num + 1; // add 1
-                $uid_num  = str_pad($num,4,"0",STR_PAD_LEFT); // get 0000X, -> x is result from summary
-                $uid      = $uid_code.$uid_num; // join prefix with result
+                if ($last_user != NULL) {
+                    $last_num = substr($last_user['uid'], -4); // get last 4 char
+                    $num      = $last_num + 1; // add 1
+                    $uid_num  = str_pad($num,4,"0",STR_PAD_LEFT); // get 0000X, -> x is result from summary
+                    $uid      = $uid_code.$uid_num; // join prefix with result
+                } else {
+                    $uid      = $uid_code.'0001';
+                }
+                
                 $nama     = strtoupper($this->request->getVar('nama'));
                 $username = $this->request->getVar('username');
                 $password = (password_hash($password,PASSWORD_BCRYPT));

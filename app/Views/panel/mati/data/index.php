@@ -30,7 +30,7 @@
                                   <?php } ?>
                               </select>
                             </div>
-                            <?php if (session('role') == '707SP') { ?>
+                            <?php if (session('role') == '707SP' || session('role') == '101DL') { ?>
                               <div class="col">
                                 <label for="kecamatan">KECAMATAN<code>*</code></label>
                                 <select class="form-control" name="kecamatan" id="kecamatan">
@@ -89,7 +89,7 @@
 
 <div class="viewmodal"></div>
 
-<?php if (session('role') == '707SP') { ?>
+<?php if (session('role') == '707SP' || session('role') == '101DL') { ?>
   <script>
     document.getElementById("kecamatan").onchange = function() {
       let selector = document.getElementById('kecamatan');
