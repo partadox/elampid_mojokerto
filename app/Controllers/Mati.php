@@ -210,7 +210,7 @@ class Mati extends BaseController
 
                 $row = [];
 
-                $row[] = $no;
+                $row[] = "<input type=\"checkbox\" name=\"id[]\" class=\"pilihMati\" value=\"$list->id\">" ." ".$no;
 				$row[] = $list->nik;
                 $row[] = $list->nama;
 				$row[] = shortdate_indo($list->tgl_mati);
@@ -322,6 +322,35 @@ class Mati extends BaseController
                     'message' => 'Data Berhasil Dihapus.',
                 ];
             echo json_encode($response);
+        }
+    }
+
+    public function deleteSelect()
+    {
+        if ($this->request->isAJAX()) {
+            $id = $this->request->getVar('id');
+            try {
+                $this->db->transStart(); // Start transaction
+    
+                if (count($id) != NULL) {
+                    foreach ($id as $item) {
+                        $this->mati->delete($item);
+                    }
+                }
+    
+                $this->db->transCommit(); // Commit transaction if all deletions are successful
+    
+                $msg = [
+                    'success' => "Data berhasil terhapus",
+                ];
+            } catch (\Exception $e) {
+                $this->db->transRollback(); // Rollback transaction on error
+    
+                $msg = [
+                    'error' => 'Terdapat data yang gagal dihapus. Coba lagi...',
+                ];
+            }
+            echo json_encode($msg);
         }
     }
 }

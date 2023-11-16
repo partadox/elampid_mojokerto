@@ -64,7 +64,8 @@ $routes->post('lahir/fetch', 'Lahir::fetch', ["filter" => "authweb:707SP-202AC-3
 
 $routes->post('lahir/modal', 'Lahir::modal', ["filter" => "authweb:707SP-202AC-303AL-101DL"]);
 $routes->post('lahir/update', 'Lahir::update', ["filter" => "authweb:707SP"]); 
-$routes->post('lahir/delete', 'Lahir::delete', ["filter" => "authweb:707SP"]); 
+$routes->post('lahir/delete', 'Lahir::delete', ["filter" => "authweb:707SP"]);
+$routes->post('lahir/deleteSelect', 'Lahir::deleteSelect', ["filter" => "authweb:707SP"]);
 
 /*--- Lahir Laporan ---*/
 $routes->get('lahir-laporan', 'LahirLaporan::index', ["filter" => "authweb:707SP"]);
@@ -84,7 +85,8 @@ $routes->post('mati/fetch', 'Mati::fetch', ["filter" => "authweb:707SP-202AC-303
 
 $routes->post('mati/modal', 'Mati::modal', ["filter" => "authweb:707SP-202AC-303AL-101DL"]);
 $routes->post('mati/update', 'Mati::update', ["filter" => "authweb:707SP"]); 
-$routes->post('mati/delete', 'Mati::delete', ["filter" => "authweb:707SP"]); 
+$routes->post('mati/delete', 'Mati::delete', ["filter" => "authweb:707SP"]);
+$routes->post('mati/deleteSelect', 'Mati::deleteSelect', ["filter" => "authweb:707SP"]); 
 
 /*--- Mati Laporan ---*/
 $routes->get('mati-laporan', 'MatiLaporan::index', ["filter" => "authweb:707SP"]);
@@ -103,7 +105,8 @@ $routes->post('pindah/fetch', 'Pindah::fetch', ["filter" => "authweb:707SP-202AC
 
 $routes->post('pindah/modal', 'Pindah::modal', ["filter" => "authweb:707SP-202AC-303AL-101DL"]);
 $routes->post('pindah/update', 'Pindah::update', ["filter" => "authweb:707SP"]); 
-$routes->post('pindah/delete', 'Pindah::delete', ["filter" => "authweb:707SP"]); 
+$routes->post('pindah/delete', 'Pindah::delete', ["filter" => "authweb:707SP"]);
+$routes->post('pindah/deleteSelect', 'Pindah::deleteSelect', ["filter" => "authweb:707SP"]); 
 
 /*--- Pindah Laporan ---*/
 $routes->get('pindah-laporan', 'PindahLaporan::index', ["filter" => "authweb:707SP"]);
@@ -122,7 +125,8 @@ $routes->post('datang/fetch', 'Datang::fetch', ["filter" => "authweb:707SP-202AC
 
 $routes->post('datang/modal', 'Datang::modal', ["filter" => "authweb:707SP-202AC-303AL-101DL"]);
 $routes->post('datang/update', 'Datang::update', ["filter" => "authweb:707SP"]); 
-$routes->post('datang/delete', 'Datang::delete', ["filter" => "authweb:707SP"]); 
+$routes->post('datang/delete', 'Datang::delete', ["filter" => "authweb:707SP"]);
+$routes->post('datang/deleteSelect', 'Datang::deleteSelect', ["filter" => "authweb:707SP"]);  
 
 /*--- Datang Laporan ---*/
 $routes->get('datang-laporan', 'DatangLaporan::index', ["filter" => "authweb:707SP"]);

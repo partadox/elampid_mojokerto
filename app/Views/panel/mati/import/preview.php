@@ -107,6 +107,17 @@ $(document).ready(function() {
     $('#save_form').on('submit', function(e) {
         e.preventDefault();
 
+        // Show loading spinner while processing
+        var loadingSpinner = Swal.fire({
+            title: 'Loading...',
+            text: 'Harap tunggu',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            willOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
         // Get the table data
         var tableData = [];
         $('#preview_table_mati tbody tr').each(function() {
@@ -131,6 +142,10 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
             success: function(response) {
+
+                // Close loading spinner
+                loadingSpinner.close();
+
                 if (response.success == true) {
                     // Show SweetAlert 2 with the success message
                     Swal.fire({
@@ -161,6 +176,10 @@ $(document).ready(function() {
                 }
             },
             error: function(response) {
+
+                // Close loading spinner
+                loadingSpinner.close();
+
                 // Show SweetAlert 2 with the error message
                 Swal.fire({
                     icon: 'error',

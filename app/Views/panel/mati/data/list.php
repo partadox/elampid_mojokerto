@@ -1,24 +1,29 @@
 <h4 class="text-center">DATA KEMATIAN</h4>
 <h5 class="text-center"><?= $teks_kecamatan ?> <?= $teks_kelurahan ?></h5>
 <h5 class="text-center"><?= $teks_bulan ?> <?= $teks_tahun ?></h5>
-<div class="table-responsive mb-3">
-  <table id="list" class="table table-striped table-bordered dt-responsive wrap w-100 ">
-    <thead>
-        <tr class="table-secondary">
-            <th width=2%>NO</th>
-            <th width=15%>NIK</th>
-            <th width=15%>NAMA</th>
-            <th width=15%>TGL MATI</th>
-            <th width=15%>AKTA MATI</th>
-            <th width=9%>KEC.</th>
-            <th width=9%>KEL.</th>
-            <th width=8%></th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
-</div>
+<?= form_open('mati/deleteSelect', ['class' => 'formhapus']) ?>
+    <div class="table-responsive mb-3">
+        <div>
+            <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus yang Dipilih </button>
+        </div>
+        <table id="list" class="table table-striped table-bordered dt-responsive wrap w-100 ">
+            <thead>
+                <tr class="table-secondary">
+                    <th width=2%><input type="checkbox" id="pilihSemua">NO</th>
+                    <th width=15%>NIK</th>
+                    <th width=15%>NAMA</th>
+                    <th width=15%>TGL MATI</th>
+                    <th width=15%>AKTA MATI</th>
+                    <th width=9%>KEC.</th>
+                    <th width=9%>KEL.</th>
+                    <th width=8%></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+<?= form_close() ?>
 
 <script>
     function fetch(bulan, tahun, kecamatan, kelurahan) {
@@ -78,6 +83,70 @@
     $(document).ready(function () {
         $('.select2').select2({});
         fetch('<?= $bulan ?>', '<?= $tahun ?>', '<?= $kecamatan ?>', '<?= $kelurahan ?>');
+
+        $('#pilihSemua').click(function(e) {
+            if ($(this).is(':checked')) {
+                $('.pilihMati').prop('checked', true);
+            } else {
+                $('.pilihMati').prop('checked', false);
+            }
+        });
+
+        $('.formhapus').submit(function(e) {
+            e.preventDefault();
+            let jmldata = $('.pilihMati:checked');
+            if (jmldata.length === 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ooops!',
+                    text: 'Silahkan pilih data!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            } else {
+                Swal.fire({
+                    title: 'Hapus data',
+                    text: `Apakah anda yakin ingin menghapus sebanyak ${jmldata.length} data?`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    allowOutsideClick: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "post",
+                            url: $(this).attr('action'),
+                            data: $(this).serialize(),
+                            dataType: "json",
+                            success: function(response) {
+                                if (response.success) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Berhasil',
+                                        text: response.success,
+                                        showConfirmButton: true,
+                                        allowOutsideClick: false
+                                    }).then(function () {
+                                        window.location.reload();
+                                    });
+                                } else if (response.error) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Gagal',
+                                        text: response.error,
+                                        showConfirmButton: true,
+                                        allowOutsideClick: false
+                                    });
+                                }
+                            }
+                        });
+                    }
+                })
+            }
+        });
     });
 
     function info(id) {
