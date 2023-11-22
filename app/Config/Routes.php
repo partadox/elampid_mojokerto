@@ -68,8 +68,8 @@ $routes->post('lahir/delete', 'Lahir::delete', ["filter" => "authweb:707SP"]);
 $routes->post('lahir/deleteSelect', 'Lahir::deleteSelect', ["filter" => "authweb:707SP"]);
 
 /*--- Lahir Laporan ---*/
-$routes->get('lahir-laporan', 'LahirLaporan::index', ["filter" => "authweb:707SP"]);
-$routes->post('lahir-laporan/export', 'LahirLaporan::export', ["filter" => "authweb:707SP"]);
+$routes->get('lahir-laporan', 'LahirLaporan::index', ["filter" => "authweb:707SP-101DL"]);
+$routes->post('lahir-laporan/export', 'LahirLaporan::export', ["filter" => "authweb:707SP-101DL"]);
 
 /*--- Lahir Import ---*/
 $routes->get('lahir-import', 'LahirImport::index', ["filter" => "authweb:707SP"]);
@@ -89,8 +89,8 @@ $routes->post('mati/delete', 'Mati::delete', ["filter" => "authweb:707SP"]);
 $routes->post('mati/deleteSelect', 'Mati::deleteSelect', ["filter" => "authweb:707SP"]); 
 
 /*--- Mati Laporan ---*/
-$routes->get('mati-laporan', 'MatiLaporan::index', ["filter" => "authweb:707SP"]);
-$routes->post('mati-laporan/export', 'MatiLaporan::export', ["filter" => "authweb:707SP"]);
+$routes->get('mati-laporan', 'MatiLaporan::index', ["filter" => "authweb:707SP-101DL"]);
+$routes->post('mati-laporan/export', 'MatiLaporan::export', ["filter" => "authweb:707SP-101DL"]);
 
 /*--- Mati Import ---*/
 $routes->get('mati-import', 'MatiImport::index', ["filter" => "authweb:707SP"]);
@@ -109,8 +109,8 @@ $routes->post('pindah/delete', 'Pindah::delete', ["filter" => "authweb:707SP"]);
 $routes->post('pindah/deleteSelect', 'Pindah::deleteSelect', ["filter" => "authweb:707SP"]); 
 
 /*--- Pindah Laporan ---*/
-$routes->get('pindah-laporan', 'PindahLaporan::index', ["filter" => "authweb:707SP"]);
-$routes->post('pindah-laporan/export', 'PindahLaporan::export', ["filter" => "authweb:707SP"]);
+$routes->get('pindah-laporan', 'PindahLaporan::index', ["filter" => "authweb:707SP-101DL"]);
+$routes->post('pindah-laporan/export', 'PindahLaporan::export', ["filter" => "authweb:707SP-101DL"]);
 
 /*--- Pindah Import ---*/
 $routes->get('pindah-import', 'PindahImport::index', ["filter" => "authweb:707SP"]);
@@ -129,8 +129,8 @@ $routes->post('datang/delete', 'Datang::delete', ["filter" => "authweb:707SP"]);
 $routes->post('datang/deleteSelect', 'Datang::deleteSelect', ["filter" => "authweb:707SP"]);  
 
 /*--- Datang Laporan ---*/
-$routes->get('datang-laporan', 'DatangLaporan::index', ["filter" => "authweb:707SP"]);
-$routes->post('datang-laporan/export', 'DatangLaporan::export', ["filter" => "authweb:707SP"]);
+$routes->get('datang-laporan', 'DatangLaporan::index', ["filter" => "authweb:707SP-101DL"]);
+$routes->post('datang-laporan/export', 'DatangLaporan::export', ["filter" => "authweb:707SP-101DL"]);
 
 /*--- Datang Import ---*/
 $routes->get('datang-import', 'DatangImport::index', ["filter" => "authweb:707SP"]);

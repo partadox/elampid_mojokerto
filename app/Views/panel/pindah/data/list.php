@@ -4,7 +4,7 @@
 <?= form_open('pindah/deleteSelect', ['class' => 'formhapus']) ?>
     <div class="table-responsive mb-3">
         <div>
-            <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus yang Dipilih </button>
+            <button type="submit" class="btn btn-sm btn-danger mb-3"><i class="fa fa-trash"></i> Hapus yang Dipilih </button>
         </div>
         <table id="list" class="table table-striped table-bordered dt-responsive wrap w-100 ">
             <thead>
@@ -58,14 +58,19 @@
                     "orderable": false,
                 },
             ],
-            buttons: [],
+            buttons: [{
+                    extend: 'excelHtml5',
+                    title: 'Data Export',
+                    text: 'Export Excel',
+                    className: 'btn-export-excel'
+                }],
             columnDefs: [{
                 targets: -1,
                 visible: false
             }],
-            dom: "<'row px-2 px-md-4 pt-2'<'col-md-3'l><'col-md-5 text-center py-2'B><'col-md-4'f>>" +
-                "<'row'<'col-md-12'tr>>" +
-                "<'row px-2 px-md-4 py-3'<'col-md-5'i><'col-md-7'p>>",
+            dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+               "<'row'<'col-sm-12'tr>>" +
+               "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
             lengthMenu: [
                 [25, 50, 75, 100, -1],
                 [25, 50, 75, 100, "All"]
@@ -76,7 +81,7 @@
                 searchable: false
             }],
         });
-        table.buttons().container().appendTo('#dataTable_wrapper .col-md-5:eq(0)');
+        table.buttons().container().appendTo($('.col-sm-12.col-md-4').eq(0));
 
     }
 

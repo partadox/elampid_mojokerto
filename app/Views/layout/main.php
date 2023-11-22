@@ -56,6 +56,9 @@
     <!-- tui charts Css -->
     <link href="<?= base_url() ?>/public/assets/libs/tui-chart/tui-chart.min.css" rel="stylesheet" type="text/css" />
 
+    <!-- Buttons extension CSS and JS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
+
 </head>
 
 <body data-sidebar="dark">
@@ -156,9 +159,11 @@
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="<?= base_url('lahir') ?>" key="t-lahir">Data</a></li>
+                                <?php if (session('role') == '707SP' || session('role') == '101DL') { ?> 
+                                    <li><a href="<?= base_url('lahir-laporan') ?>" key="t-laporan-lahir">Laporan</a></li>
+                                <?php } ?>
                                 <?php if (session('role') == '707SP') { ?> 
-                                <li><a href="<?= base_url('lahir-laporan') ?>" key="t-laporan-lahir">Laporan</a></li>
-                                <li><a href="<?= base_url('lahir-import') ?>" key="t-import-lahir">Import</a></li>
+                                    <li><a href="<?= base_url('lahir-import') ?>" key="t-import-lahir">Import</a></li>
                                 <?php } ?>
                                 
                             </ul>
@@ -171,9 +176,11 @@
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="<?= base_url('mati') ?>" key="t-mati">Data</a></li>
+                                <?php if (session('role') == '707SP'|| session('role') == '101DL') { ?> 
+                                    <li><a href="<?= base_url('mati-laporan') ?>" key="t-mati-laporan">Laporan</a></li>
+                                <?php } ?>
                                 <?php if (session('role') == '707SP') { ?> 
-                                <li><a href="<?= base_url('mati-laporan') ?>" key="t-mati-laporan">Laporan</a></li>
-                                <li><a href="<?= base_url('mati-import') ?>" key="t-mati-import">Import</a></li>
+                                    <li><a href="<?= base_url('mati-import') ?>" key="t-mati-import">Import</a></li>
                                 <?php } ?>
                             </ul>
                         </li>
@@ -185,9 +192,11 @@
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="<?= base_url('pindah') ?>" key="t-pindah">Data</a></li>
+                                <?php if (session('role') == '707SP'|| session('role') == '101DL') { ?> 
+                                    <li><a href="<?= base_url('pindah-laporan') ?>" key="t-pindah-laporan">Laporan</a></li>
+                                <?php } ?>
                                 <?php if (session('role') == '707SP') { ?> 
-                                <li><a href="<?= base_url('pindah-laporan') ?>" key="t-pindah-laporan">Laporan</a></li>
-                                <li><a href="<?= base_url('pindah-import') ?>" key="t-pindah-import">Import</a></li>
+                                    <li><a href="<?= base_url('pindah-import') ?>" key="t-pindah-import">Import</a></li>
                                 <?php } ?>
                             </ul>
                         </li>
@@ -199,9 +208,11 @@
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="<?= base_url('datang') ?>" key="t-datang">Data</a></li>
+                                <?php if (session('role') == '707SP'|| session('role') == '101DL') { ?> 
+                                    <li><a href="<?= base_url('datang-laporan') ?>" key="t-datang-laporan">Laporan</a></li>
+                                <?php } ?>
                                 <?php if (session('role') == '707SP') { ?> 
-                                <li><a href="<?= base_url('datang-laporan') ?>" key="t-datang-laporan">Laporan</a></li>
-                                <li><a href="<?= base_url('datang-import') ?>" key="t-datang-import">Import</a></li>
+                                    <li><a href="<?= base_url('datang-import') ?>" key="t-datang-import">Import</a></li>
                                 <?php } ?>
                             </ul>
                         </li>
@@ -304,6 +315,15 @@
 
 <!-- Date Picker Booststrap -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- Buttons extension CSS and JS -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+
+<!-- JSZip library for Excel -->
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+<!-- Buttons extension - HTML5 export buttons -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
 
 <script>
     $('.datepicker2').datepicker({
