@@ -5,9 +5,11 @@
 
 <?= form_open('lahir/deleteSelect', ['class' => 'formhapus']) ?>
     <div class="table-responsive mb-3">
-        <div>
-            <button type="submit" class="btn btn-sm btn-danger mb-3"><i class="fa fa-trash"></i> Hapus yang Dipilih </button>
-        </div>
+        <?php if (session('role') == '707SP') { ?> 
+            <div>
+                <button type="submit" class="btn btn-sm btn-danger mb-3"><i class="fa fa-trash"></i> Hapus yang Dipilih </button>
+            </div>
+        <?php } ?>
         <table id="list" class="table table-striped table-bordered dt-responsive wrap w-100 ">
             <thead>
                 <tr class="table-secondary">
